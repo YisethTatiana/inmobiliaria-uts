@@ -1,0 +1,129 @@
+/* ============================================================
+   INMOBILIARIA UTS - estilos personalizados
+   Complementan Bootstrap 5 e incluyen media queries propias.
+   ============================================================ */
+
+body {
+    background-color: #f5f6f8;
+}
+
+/* --- Tarjetas de propiedades --- */
+.card-propiedad {
+    transition: transform .2s ease, box-shadow .2s ease;
+}
+.card-propiedad:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+.card-propiedad .card-img-top {
+    height: 200px;
+    object-fit: cover;
+    background-color: #dee2e6;
+}
+.hero-imagen {
+    background-image: linear-gradient(rgba(33, 37, 41, .75), rgba(33, 37, 41, .75));
+    background-color: #343a40;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+.titulo-hero {
+    letter-spacing: .5px;
+}
+.buscador-landing {
+    background-color: rgba(255, 255, 255, .95);
+}
+
+/* --- Detalle de propiedad --- */
+.img-detalle-principal {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: .5rem;
+    background-color: #dee2e6;
+}
+.img-sello {
+    width: 90px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: .25rem;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+.img-sello.activa {
+    border-color: #0d6efd;
+}
+.estado-badge {
+    font-size: .8rem;
+}
+
+/* --- Paneles y utilidades --- */
+.tabla-sm th, .tabla-sm td {
+    vertical-align: middle;
+}
+.avatar-circle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0d6efd;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* --- Media queries propias (tableta y celular) --- */
+@media (max-width: 991.98px) {
+    .img-detalle-principal {
+        height: 320px;
+    }
+    .navbar .d-flex.align-items-center {
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .img-detalle-principal {
+        height: 240px;
+    }
+    .card-propiedad .card-img-top {
+        height: 160px;
+    }
+    .titulo-hero {
+        font-size: 1.7rem;
+    }
+    table.responsive-cards thead {
+        display: none;
+    }
+    table.responsive-cards tbody, table.responsive-cards tr, table.responsive-cards td {
+        display: block;
+        width: 100%;
+    }
+    table.responsive-cards tr {
+        border: 1px solid #dee2e6;
+        border-radius: .5rem;
+        margin-bottom: .75rem;
+        background: #fff;
+        padding: .5rem;
+    }
+    table.responsive-cards td::before {
+        content: attr(data-label);
+        display: block;
+        font-weight: 700;
+        font-size: .75rem;
+        text-transform: uppercase;
+        color: #6c757d;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .hero-imagen {
+        padding: 2rem 1rem;
+    }
+    .img-detalle-principal {
+        height: 200px;
+    }
+}
