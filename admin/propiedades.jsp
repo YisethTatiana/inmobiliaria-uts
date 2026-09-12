@@ -1,9 +1,9 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%
-    request.setAttribute("titulo", "Gestión de Propiedades");
+    request.setAttribute("titulo", "Gesti\u00F3n de Propiedades");
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     String ctx = request.getContextPath();
     if (usuario == null) {
@@ -81,7 +81,7 @@
                                         <a href="<%= ctx %>/DetallePropiedadServlet?id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-info">Ficha</a>
                                         <a href="<%= ctx %>/EditarPropiedadServlet?id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-primary">Editar</a>
                                         <a href="<%= ctx %>/EliminarPropiedadServlet?id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-danger"
-                                           onclick="return confirm('¿Eliminar definitivamente esta propiedad?');">Eliminar</a>
+                                           onclick="return confirm('&#191;Eliminar definitivamente esta propiedad?');">Eliminar</a>
                                     </td>
                                 </tr>
                             <% } %>

@@ -52,18 +52,15 @@ public class FiltroAutenticacion implements Filter {
             return;
         }
 
-        // El administrador también puede operar como agente y ver el panel de cliente
+        // El administrador puede operar en cualquier módulo; cualquier otro
+        // usuario debe tener el rol que exige la ruta protegida.
         Usuario usuario = getUsuario(session);
         if (usuario == null) {
             res.sendRedirect(contexto + "/login.jsp");
             return;
         }
 
-        // El rol AUDITOR solo puede acceder a la bitácora de auditoría
-        boolean esAuditorEnAuditoria = usuario.tieneRol("AUDITOR")
-                && path.equals("/admin/auditoria.jsp");
-
-        if (!usuario.tieneRol(rolRequerido) && !usuario.tieneRol(ROL_ADMIN) && !esAuditorEnAuditoria) {
+        if (!usuario.tieneRol(rolRequerido) && !usuario.tieneRol(ROL_ADMIN)) {
             res.sendRedirect(contexto + "/acceso_denegado.jsp");
             return;
         }

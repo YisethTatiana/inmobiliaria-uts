@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%
     request.setAttribute("titulo", "Registro");
 %>
@@ -16,7 +16,7 @@
 
                     <form action="<%= request.getContextPath() %>/RegistroServlet" method="POST">
                         <div class="mb-3">
-                            <label class="form-label">Correo Electrónico</label>
+                            <label class="form-label">Correo Electr&#243;nico</label>
                             <input type="email" name="correo" class="form-control" required>
                         </div>
                         <div class="mb-3">
@@ -28,21 +28,27 @@
                             <input type="text" name="apellidos" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Teléfono</label>
+                            <label class="form-label">N&#250;mero de documento</label>
+                            <input type="text" name="documento" class="form-control" inputmode="numeric"
+                                   pattern="[0-9]{6,12}" maxlength="12" title="Solo d&#237;gitos (6 a 12)"
+                                   required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Tel&#233;fono</label>
                             <input type="tel" name="telefono" class="form-control">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Contraseña (mínimo 6 caracteres)</label>
+                            <label class="form-label">Contrase&#241;a (m&#237;nimo 6 caracteres)</label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label">Confirmar Contraseña</label>
+                            <label class="form-label">Confirmar Contrase&#241;a</label>
                             <input type="password" name="confirmar" class="form-control" required>
                         </div>
                         <button type="submit" class="btn btn-success w-100">Registrarse</button>
                     </form>
                     <div class="mt-3 text-center">
-                        <a href="<%= request.getContextPath() %>/login.jsp">¿Ya tienes cuenta? Inicia sesión</a>
+                        <a href="<%= request.getContextPath() %>/login.jsp">&#191;Ya tienes cuenta? Inicia sesi&#243;n</a>
                     </div>
                 </div>
             </div>

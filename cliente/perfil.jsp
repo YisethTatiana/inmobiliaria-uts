@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="com.inmobiliaria.modelo.Perfil" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%
@@ -71,12 +71,12 @@
                                    value="<%= perfil != null && perfil.getDocumento() != null ? perfil.getDocumento() : "" %>">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Teléfono</label>
+                            <label class="form-label">Tel&#233;fono</label>
                             <input type="text" name="telefono" class="form-control"
                                    value="<%= perfil != null && perfil.getTelefono() != null ? perfil.getTelefono() : "" %>">
                         </div>
                         <div class="col-md-4">
-                            <label class="form-label">Dirección</label>
+                            <label class="form-label">Direcci&#243;n</label>
                             <input type="text" name="direccion" class="form-control"
                                    value="<%= perfil != null && perfil.getDireccion() != null ? perfil.getDireccion() : "" %>">
                         </div>

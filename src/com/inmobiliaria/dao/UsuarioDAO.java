@@ -185,9 +185,12 @@ public class UsuarioDAO {
         }
     }
 
-    public boolean registrarUsuario(String correo, String passwordPlana, int idRol) throws SQLException {
+    public boolean registrarUsuario(String correo, String passwordPlana, int idRol,
+                                    String nombres, String apellidos, String documento, String telefono) throws SQLException {
         String sqlUsuario = "INSERT INTO usuario (correo, password_hash, activo) VALUES (?, ?, true)";
         String sqlRol = "INSERT INTO usuario_rol (id_usuario, id_rol) VALUES (?, ?)";
+        String sqlPerfil = "INSERT INTO perfil (id_usuario, nombres, apellidos, documento, telefono) "
+                         + "VALUES (?, ?, ?, ?, ?)";
 
         String salt = PasswordUtils.generarSalt();
         String passwordHash = PasswordUtils.hashPassword(passwordPlana, salt) + ":" + salt;
@@ -208,6 +211,14 @@ public class UsuarioDAO {
                         psRol.setInt(1, idUsuario);
                         psRol.setInt(2, idRol);
                         psRol.executeUpdate();
+                    }
+                    try (PreparedStatement psPerfil = con.prepareStatement(sqlPerfil)) {
+                        psPerfil.setInt(1, idUsuario);
+                        psPerfil.setString(2, nombres);
+                        psPerfil.setString(3, apellidos);
+                        psPerfil.setString(4, documento);
+                        psPerfil.setString(5, telefono);
+                        psPerfil.executeUpdate();
                     }
                 }
                 con.commit();

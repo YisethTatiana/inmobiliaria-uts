@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.ImagenPropiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Caracteristica" %>
@@ -31,7 +31,7 @@
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<%= ctx %>/PropiedadServlet">Catálogo</a></li>
+            <li class="breadcrumb-item"><a href="<%= ctx %>/PropiedadServlet">Cat&#225;logo</a></li>
             <li class="breadcrumb-item active"><%= p.getTitulo() != null ? p.getTitulo() : "Ficha" %></li>
         </ol>
     </nav>
@@ -65,17 +65,17 @@
                     <h3 class="text-primary fw-bold">$ <%= String.format("%,.0f", p.getPrecio()) %></h3>
                     <ul class="list-inline">
                         <% if (p.getHabitaciones() > 0) { %><li class="list-inline-item badge bg-secondary"><i class="bi bi-bed"></i> <%= p.getHabitaciones() %> hab.</li><% } %>
-                        <% if (p.getBanios() > 0) { %><li class="list-inline-item badge bg-secondary"><i class="bi bi-droplet"></i> <%= p.getBanios() %> baños</li><% } %>
+                        <% if (p.getBanios() > 0) { %><li class="list-inline-item badge bg-secondary"><i class="bi bi-droplet"></i> <%= p.getBanios() %> ba&#241;os</li><% } %>
                         <% if (p.getParqueaderos() > 0) { %><li class="list-inline-item badge bg-secondary"><i class="bi bi-car-front"></i> <%= p.getParqueaderos() %> parq.</li><% } %>
                         <% if (p.getArea() != null && p.getArea().doubleValue() > 0) { %><li class="list-inline-item badge bg-secondary"><i class="bi bi-rulers"></i> <%= String.format("%,.0f", p.getArea()) %> m&sup2;</li><% } %>
                     </ul>
                     <hr>
-                    <h6>Descripción</h6>
+                    <h6>Descripci&#243;n</h6>
                     <p class="text-muted"><%= p.getDescripcion() %></p>
 
-                    <h6>Características</h6>
+                    <h6>Caracter&#237;sticas</h6>
                     <% if (p.getCaracteristicas().isEmpty()) { %>
-                        <p class="text-muted small">Sin características registradas.</p>
+                        <p class="text-muted small">Sin caracter&#237;sticas registradas.</p>
                     <% } else { %>
                         <ul class="list-unstyled small">
                             <% for (Caracteristica c : p.getCaracteristicas()) { %>
@@ -106,7 +106,7 @@
                             <a href="<%= ctx %>/FavoritoServlet?id=<%= p.getIdPropiedad() %>&origen=detalle"
                                class="btn btn-outline-warning"><i class="bi bi-star"></i> Favorito</a>
                         <% } else { %>
-                            <a href="<%= ctx %>/login.jsp" class="btn btn-primary flex-fill">Inicia sesión para agendar una visita</a>
+                            <a href="<%= ctx %>/login.jsp" class="btn btn-primary flex-fill">Inicia sesi&#243;n para agendar una visita</a>
                         <% } %>
                     </div>
                 </div>

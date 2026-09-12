@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="com.inmobiliaria.modelo.Solicitud" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%@ page import="java.util.List" %>
@@ -47,12 +47,12 @@
                                              : "bg-secondary"; %>
                                 <tr>
                                     <td data-label="N&ordm;">#<%= s.getIdSolicitud() %></td>
-                                    <td data-label="Cliente"><%= s.getCorreoCliente() != null ? s.getCorreoCliente() : "—" %></td>
+                                    <td data-label="Cliente"><%= s.getCorreoCliente() != null ? s.getCorreoCliente() : "\u2014" %></td>
                                     <td data-label="Propiedad"><%= s.getTituloPropiedad() %></td>
                                     <td data-label="Tipo"><%= s.getTipoSolicitud() %></td>
                                     <td data-label="Fecha">
                                         <%= s.getFechaSolicitud() != null
-                                                ? new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm a").format(s.getFechaSolicitud()) : "—" %>
+                                                ? new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm a").format(s.getFechaSolicitud()) : "\u2014" %>
                                     </td>
                                     <td data-label="Estado"><span class="badge <%= badge %>"><%= s.getEstado() %></span></td>
                                     <td class="text-end">

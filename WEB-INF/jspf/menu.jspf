@@ -10,13 +10,13 @@
     <div class="container">
         <a class="navbar-brand fw-bold" href="<%= _ctx %>/">Inmobiliaria UTS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navPrincipal"
-                aria-controls="navPrincipal" aria-expanded="false" aria-label="Menú">
+                aria-controls="navPrincipal" aria-expanded="false" aria-label="Men&#250;">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navPrincipal">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link" href="<%= _ctx %>/PropiedadServlet">Catálogo</a>
+                    <a class="nav-link" href="<%= _ctx %>/PropiedadServlet">Cat&#225;logo</a>
                 </li>
                 <% if (_esAdmin) { %>
                     <li class="nav-item"><a class="nav-link" href="<%= _ctx %>/admin/dashboard_admin.jsp">Panel Admin</a></li>
@@ -24,8 +24,6 @@
                     <li class="nav-item"><a class="nav-link" href="<%= _ctx %>/agente/dashboard_inmobiliaria.jsp">Panel Agente</a></li>
                 <% } else if (_esCliente) { %>
                     <li class="nav-item"><a class="nav-link" href="<%= _ctx %>/cliente/dashboard_cliente.jsp">Panel Cliente</a></li>
-                <% } else if (_u != null && _u.tieneRol("AUDITOR")) { %>
-                    <li class="nav-item"><a class="nav-link" href="<%= _ctx %>/AuditoriaServlet">Panel Auditor</a></li>
                 <% } %>
                 <% if (_u != null) { %>
                     <li class="nav-item"><a class="nav-link" href="<%= _ctx %>/PerfilServlet">Mi Perfil</a></li>
@@ -33,14 +31,14 @@
             </ul>
             <div class="d-flex align-items-center gap-2">
                 <% if (_u == null) { %>
-                    <a href="<%= _ctx %>/login.jsp" class="btn btn-outline-light btn-sm">Iniciar Sesión</a>
+                    <a href="<%= _ctx %>/login.jsp" class="btn btn-outline-light btn-sm">Iniciar Sesi&#243;n</a>
                     <a href="<%= _ctx %>/registro.jsp" class="btn btn-primary btn-sm">Registrarse</a>
                 <% } else { %>
                     <span class="navbar-text me-2 text-white small">
                         <strong><%= _u.getCorreo() %></strong>
                         <span class="badge bg-info text-dark"><%= String.join(", ", _roles) %></span>
                     </span>
-                    <a href="<%= _ctx %>/LogoutServlet" class="btn btn-outline-light btn-sm">Cerrar Sesión</a>
+                    <a href="<%= _ctx %>/LogoutServlet" class="btn btn-outline-light btn-sm">Cerrar Sesi&#243;n</a>
                 <% } %>
             </div>
         </div>

@@ -1,11 +1,11 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%
-    request.setAttribute("titulo", "Gestión de Usuarios");
+    request.setAttribute("titulo", "Gesti\u00F3n de Usuarios");
     Usuario admin = (Usuario) session.getAttribute("usuario");
     String ctx = request.getContextPath();
     if (admin == null) {
@@ -135,7 +135,7 @@
                                             </form>
                                             <a href="<%= ctx %>/EliminarUsuarioServlet?id=<%= u.getIdUsuario() %>"
                                                class="btn btn-sm btn-outline-danger"
-                                               onclick="return confirm('¿Estás seguro de eliminar el usuario <%= u.getCorreo() %>?');">Eliminar</a>
+                                               onclick="return confirm('&#191;Est&#225;s seguro de eliminar el usuario <%= u.getCorreo() %>?');">Eliminar</a>
                                         <% } else { %>
                                             <span class="text-muted small">-</span>
                                         <% } %>

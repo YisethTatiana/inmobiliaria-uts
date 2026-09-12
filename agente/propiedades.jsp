@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
@@ -80,12 +80,12 @@
                                         <a href="<%= ctx %>/AgentePropiedadServlet?accion=editar&id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-primary">Editar</a>
                                         <% if ("DISPONIBLE".equals(p.getEstado())) { %>
                                             <a href="<%= ctx %>/AgentePropiedadServlet?accion=darBaja&id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-warning"
-                                               onclick="return confirm('¿Dar de baja esta propiedad? Se ocultar&aacute; del cat&aacute;logo.');">Baja</a>
+                                               onclick="return confirm('&#191;Dar de baja esta propiedad? Se ocultar&aacute; del cat&aacute;logo.');">Baja</a>
                                         <% } else { %>
                                             <a href="<%= ctx %>/AgentePropiedadServlet?accion=reactivar&id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-success">Reactivar</a>
                                         <% } %>
                                         <a href="<%= ctx %>/AgentePropiedadServlet?accion=eliminar&id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-danger"
-                                           onclick="return confirm('¿Eliminar definitivamente esta propiedad?');">Eliminar</a>
+                                           onclick="return confirm('&#191;Eliminar definitivamente esta propiedad?');">Eliminar</a>
                                     </td>
                                 </tr>
                             <% } %>

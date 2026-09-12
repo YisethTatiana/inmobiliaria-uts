@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.inmobiliaria.modelo.Cita" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
@@ -46,13 +46,13 @@
                         <tbody>
                             <% for (Cita c : citas) {
                                 String badge = "PENDIENTE".equals(c.getEstado()) ? "bg-warning text-dark"
-                                             : "CONFIRMADA".equals(c.getEstado()) ? "bg-primary"
+                                             : "APROBADA".equals(c.getEstado()) ? "bg-primary"
                                              : "COMPLETADA".equals(c.getEstado()) ? "bg-success" : "bg-secondary"; %>
                                 <tr>
                                     <td data-label="ID">#<%= c.getIdCita() %></td>
-                                    <td data-label="Cliente"><%= c.getCorreoCliente() != null ? c.getCorreoCliente() : "—" %></td>
+                                    <td data-label="Cliente"><%= c.getCorreoCliente() != null ? c.getCorreoCliente() : "\u2014" %></td>
                                     <td data-label="Propiedad"><%= c.getTituloPropiedad() != null ? c.getTituloPropiedad() : "Propiedad #" + c.getIdPropiedad() %></td>
-                                    <td data-label="Ciudad"><%= c.getNombreCiudad() != null ? c.getNombreCiudad() : "—" %></td>
+                                    <td data-label="Ciudad"><%= c.getNombreCiudad() != null ? c.getNombreCiudad() : "\u2014" %></td>
                                     <td data-label="Fecha"><%= new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm a").format(c.getFechaCita()) %></td>
                                     <td data-label="Estado"><span class="badge <%= badge %>"><%= c.getEstado() %></span></td>
                                     <td data-label="Cambiar estado" class="text-nowrap">
@@ -60,7 +60,7 @@
                                             <input type="hidden" name="idCita" value="<%= c.getIdCita() %>">
                                             <select name="estado" class="form-select form-select-sm d-inline-block w-auto" onchange="this.form.submit()">
                                                 <option value="PENDIENTE" <%= "PENDIENTE".equals(c.getEstado()) ? "selected" : "" %>>Pendiente</option>
-                                                <option value="CONFIRMADA" <%= "CONFIRMADA".equals(c.getEstado()) ? "selected" : "" %>>Confirmada</option>
+                                                <option value="APROBADA" <%= "APROBADA".equals(c.getEstado()) ? "selected" : "" %>>Aprobada</option>
                                                 <option value="COMPLETADA" <%= "COMPLETADA".equals(c.getEstado()) ? "selected" : "" %>>Completada</option>
                                                 <option value="CANCELADA" <%= "CANCELADA".equals(c.getEstado()) ? "selected" : "" %>>Cancelada</option>
                                             </select>

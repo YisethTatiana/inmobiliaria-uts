@@ -54,17 +54,14 @@ public class Usuario {
 
     public String getPanelSegunRol() {
         if (tieneRol("ADMINISTRADOR")) {
-            return "admin/dashboard_admin.jsp";
+            return "/admin/dashboard_admin.jsp";
         }
         if (tieneRol("INMOBILIARIA")) {
-            return "agente/dashboard_inmobiliaria.jsp";
+            return "/agente/dashboard_inmobiliaria.jsp";
         }
         if (tieneRol("CLIENTE")) {
-            return "cliente/dashboard_cliente.jsp";
+            return "/cliente/dashboard_cliente.jsp";
         }
-        if (tieneRol("AUDITOR")) {
-            return "AuditoriaServlet";
-        }
-        return "index.jsp";
+        return "/index.jsp";
     }
 }

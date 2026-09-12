@@ -19,7 +19,7 @@ public class PropiedadDAO {
             + "p.precio, p.direccion, p.area, p.habitaciones, p.banios, p.parqueaderos, "
             + "p.estado, p.fecha_publicacion, p.id_ciudad, p.id_tipo, p.id_inmobiliaria, "
             + "ci.nombre AS nombre_ciudad, tp.nombre AS nombre_tipo, i.nombre AS nombre_inmobiliaria, "
-            + "i.telefono AS telefono_inmobiliaria, i.email AS email_inmobiliaria ";
+            + "i.telefono AS telefono_inmobiliaria, i.correo_contacto AS email_inmobiliaria ";
 
     private static final String DESDE = "FROM propiedad p "
             + "INNER JOIN ciudad ci ON p.id_ciudad = ci.id_ciudad "

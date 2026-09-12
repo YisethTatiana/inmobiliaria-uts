@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="com.inmobiliaria.modelo.Auditoria" %>
 <%@ page import="com.inmobiliaria.modelo.Perfil" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
@@ -10,7 +10,7 @@
         response.sendRedirect(request.getContextPath() + "/login.jsp");
         return;
     }
-    if (!u.tieneRol("ADMINISTRADOR") && !u.tieneRol("AUDITOR")) {
+    if (!u.tieneRol("ADMINISTRADOR")) {
         response.sendRedirect(request.getContextPath() + "/acceso_denegado.jsp");
         return;
     }
@@ -60,7 +60,7 @@
                                 <tr>
                                     <td data-label="N&ordm;">#<%= a.getIdAuditoria() %></td>
                                     <td data-label="Fecha"><%= new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm:ss a").format(a.getFecha()) %></td>
-                                    <td data-label="Usuario"><%= a.getCorreoUsuario() != null ? a.getCorreoUsuario() : "—" %></td>
+                                    <td data-label="Usuario"><%= a.getCorreoUsuario() != null ? a.getCorreoUsuario() : "\u2014" %></td>
                                     <td data-label="Accion"><span class="badge bg-primary"><%= a.getAccion() %></span></td>
                                     <td data-label="Entidad"><%= a.getEntidad() %></td>
                                     <td data-label="Detalle" class="text-wrap"><%= a.getDetalle() %></td>

@@ -40,18 +40,21 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 
 ## Cuentas de prueba (4 roles)
 
+> Los 4 roles son: **Visitante** (no necesita cuenta, navega el catálogo),
+> **Cliente**, **Inmobiliaria** (agente) y **Administrador**.
+
 | Rol | Correo | Clave |
 |---|---|---|
 | Administrador | `admin@inmobiliaria.com` | `admin123` |
 | Inmobiliaria (agente) | `agente1@inmobiliaria.com`, `agente2@inmobiliaria.com` | `agente123` |
-| Cliente | `cliente1@mail.com`, `cliente2@mail.com`, `cliente3@mail.com`, `cliente4@mail.com`, `cliente5@mail.com`, `cliente6@mail.com`, `cliente8@mail.com` | `cliente123` |
-| Auditor | `auditor@inmobiliaria.com` | `cliente123` |
+| Cliente | — (se registran desde `registro.jsp`; no vienen sembrados en el DML) | creada al registrarse |
 
-> `cliente7@mail.com` existe pero está **inactiva** (`activo = 0`).
 > Las contraseñas se almacenan cifradas (SHA-256 + salt). Ver detalle en `docs/MODELO_DATOS.md`.
 
 ## Documentación
 - `docs/MODELO_DATOS.md` — MER, modelo relacional 3FN y diccionario de datos.
+- `docs/MODELO_DATOS.md` → `docs/imagenes/MER.png` y `docs/imagenes/modelo_relacional.png` (diagramas).
 - `docs/SCRUM_DOCUMENTATION.md` — 3 sprints, historias, métricas y retrospectivas.
+- `docs/imagenes/tablero_scrum.png` — tablero Scrum de los 3 sprints.
 - `database/consultas.sql` — las 5 consultas exigidas (INNER JOIN de 4 tablas,
   N:M, LEFT JOIN, GROUP BY/HAVING).

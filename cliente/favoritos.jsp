@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
@@ -36,12 +36,12 @@
                             <p class="text-muted small"><%= p.getNombreCiudad() %> &middot; <%= p.getNombreTipo() %></p>
                             <p class="card-text text-muted small flex-grow-1">
                                 <%= p.getDescripcion() != null && p.getDescripcion().length() > 120
-                                        ? p.getDescripcion().substring(0, 120) + "…" : p.getDescripcion() %>
+                                        ? p.getDescripcion().substring(0, 120) + "\u2026" : p.getDescripcion() %>
                             </p>
                             <h6 class="fw-bold text-success">$ <%= String.format("%,.0f", p.getPrecio()) %></h6>
                             <div class="d-flex gap-2 mt-2">
                                 <a href="<%= ctx %>/DetallePropiedadServlet?id=<%= p.getIdPropiedad() %>" class="btn btn-outline-primary btn-sm flex-fill">Ver ficha</a>
-                                <a href="<%= ctx %>/FavoritoServlet?id=<%= p.getIdPropiedad() %>&origen=favoritos" class="btn btn-warning btn-sm">★ Quitar</a>
+                                <a href="<%= ctx %>/FavoritoServlet?id=<%= p.getIdPropiedad() %>&origen=favoritos" class="btn btn-warning btn-sm">&#9733; Quitar</a>
                             </div>
                         </div>
                     </div>

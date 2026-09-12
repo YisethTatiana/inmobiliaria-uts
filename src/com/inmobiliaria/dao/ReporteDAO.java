@@ -139,6 +139,20 @@ public class ReporteDAO {
         }
     }
 
+    // 5c) GROUP BY: citas por estado (reporte requerido)
+    public List<Map<String, Object>> citasPorEstado() throws SQLException {
+        String sql = "SELECT c.estado AS Estado, COUNT(*) AS Total "
+                   + "FROM cita c "
+                   + "GROUP BY c.estado "
+                   + "ORDER BY Total DESC, Estado";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+            return aMapas(rs);
+        }
+    }
+
     // Reporte extra: solicitudes por inmobiliaria (requerido en los reportes)
     public List<Map<String, Object>> solicitudesPorInmobiliaria() throws SQLException {
         String sql = "SELECT i.nombre AS Inmobiliaria, s.tipo_solicitud AS Tipo, s.estado AS Estado, "

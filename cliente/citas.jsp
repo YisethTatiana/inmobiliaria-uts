@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.inmobiliaria.modelo.Cita" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
@@ -64,16 +64,16 @@
                                 <tr>
                                     <td data-label="ID">#<%= c.getIdCita() %></td>
                                     <td data-label="Propiedad"><%= c.getTituloPropiedad() != null ? c.getTituloPropiedad() : "Propiedad #" + c.getIdPropiedad() %></td>
-                                    <td data-label="Ciudad"><%= c.getNombreCiudad() != null ? c.getNombreCiudad() : "—" %></td>
+                                    <td data-label="Ciudad"><%= c.getNombreCiudad() != null ? c.getNombreCiudad() : "\u2014" %></td>
                                     <td data-label="Fecha"><%= new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm a").format(c.getFechaCita()) %></td>
-                                    <td data-label="Observaciones" class="text-wrap"><%= c.getObservaciones() != null && !c.getObservaciones().isEmpty() ? c.getObservaciones() : "—" %></td>
+                                    <td data-label="Observaciones" class="text-wrap"><%= c.getObservaciones() != null && !c.getObservaciones().isEmpty() ? c.getObservaciones() : "\u2014" %></td>
                                     <td data-label="Estado"><span class="badge <%= badge %>"><%= c.getEstado() %></span></td>
                                     <td data-label="Acciones" class="text-end">
                                         <% if (!"CANCELADA".equals(c.getEstado()) && !"COMPLETADA".equals(c.getEstado())) { %>
                                             <form action="<%= ctx %>/CitaServlet" method="post" class="d-inline">
                                                 <input type="hidden" name="accion" value="cancelar">
                                                 <input type="hidden" name="idCita" value="<%= c.getIdCita() %>">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Cancelar esta cita?');">Cancelar</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('&#191;Cancelar esta cita?');">Cancelar</button>
                                             </form>
                                         <% } %>
                                     </td>

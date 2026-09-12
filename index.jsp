@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%@ page import="com.inmobiliaria.dao.PropiedadDAO" %>
@@ -34,7 +34,7 @@
                 <form action="<%= request.getContextPath() %>/PropiedadServlet" method="get" class="buscador-landing rounded-4 shadow p-3">
                     <div class="row g-2">
                         <div class="col-md-5">
-                            <input type="text" name="texto" class="form-control" placeholder="Buscar por nombre o dirección...">
+                            <input type="text" name="texto" class="form-control" placeholder="Buscar por nombre o direcci&#243;n...">
                         </div>
                         <div class="col-6 col-md-3">
                             <select name="ciudad" class="form-select">
@@ -65,12 +65,12 @@
 <div class="container my-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2 class="mb-0">Publicaciones destacadas</h2>
-        <a href="<%= request.getContextPath() %>/PropiedadServlet" class="btn btn-outline-primary btn-sm">Ver todo el catálogo</a>
+        <a href="<%= request.getContextPath() %>/PropiedadServlet" class="btn btn-outline-primary btn-sm">Ver todo el cat&#225;logo</a>
     </div>
     <div class="row g-4">
         <% if (destacadas == null || destacadas.isEmpty()) { %>
             <div class="col-12">
-                <div class="alert alert-info">Aún no hay publicaciones destacadas.</div>
+                <div class="alert alert-info">A&#250;n no hay publicaciones destacadas.</div>
             </div>
         <% } else { %>
             <% for (Propiedad p : destacadas) { %>
@@ -99,18 +99,18 @@
         <div class="col-md-4">
             <div class="card h-100 shadow-sm"><div class="card-body">
                 <h5><i class="bi bi-building"></i> Sobre nosotros</h5>
-                <p class="text-muted small mb-0">Inmobiliaria UTS es una empresa ficticia que administra propiedades de diversos tipos en todo el país.</p>
+                <p class="text-muted small mb-0">Inmobiliaria UTS es una empresa ficticia que administra propiedades de diversos tipos en todo el pa&#237;s.</p>
             </div></div>
         </div>
         <div class="col-md-4">
             <div class="card h-100 shadow-sm"><div class="card-body">
-                <h5><i class="bi bi-search"></i> Búsqueda inteligente</h5>
+                <h5><i class="bi bi-search"></i> B&#250;squeda inteligente</h5>
                 <p class="text-muted small mb-0">Filtra por ciudad, tipo de inmueble y rango de precio con resultados al instante.</p>
             </div></div>
         </div>
         <div class="col-md-4">
             <div class="card h-100 shadow-sm"><div class="card-body">
-                <h5><i class="bi bi-shield-check"></i> Trámites seguros</h5>
+                <h5><i class="bi bi-shield-check"></i> Tr&#225;mites seguros</h5>
                 <p class="text-muted small mb-0">Agenda visitas, radica documentos y sigue el estado de tu solicitud de compra o arriendo.</p>
             </div></div>
         </div>

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="com.inmobiliaria.modelo.Solicitud" %>
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
@@ -69,7 +69,7 @@
                                             <td data-label="Tipo"><%= s.getTipoSolicitud() %></td>
                                             <td data-label="Fecha">
                                                 <%= s.getFechaSolicitud() != null
-                                                        ? new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm a").format(s.getFechaSolicitud()) : "—" %>
+                                                        ? new java.text.SimpleDateFormat("dd/MM/yyyy hh:mm a").format(s.getFechaSolicitud()) : "\u2014" %>
                                             </td>
                                             <td data-label="Estado"><span class="badge <%= badge %>"><%= s.getEstado() %></span></td>
                                             <td class="text-end">
@@ -83,7 +83,7 @@
                                                     <input type="hidden" name="idSolicitud" value="<%= s.getIdSolicitud() %>">
                                                     <button type="submit" class="btn btn-sm btn-outline-danger"
                                                             <%= "APROBADA".equals(s.getEstado()) || "RECHAZADA".equals(s.getEstado()) || "ANULADA".equals(s.getEstado()) ? "disabled" : "" %>
-                                                            onclick="return confirm('¿Anular esta solicitud?');">Anular</button>
+                                                            onclick="return confirm('&#191;Anular esta solicitud?');">Anular</button>
                                                 </form>
                                             </td>
                                         </tr>

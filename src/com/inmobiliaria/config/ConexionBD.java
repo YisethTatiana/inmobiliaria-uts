@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionBD {
-    private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria_db?useSSL=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/inmobiliaria_db?useSSL=false&serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root";
     private static final String PASSWORD = ""; 
 

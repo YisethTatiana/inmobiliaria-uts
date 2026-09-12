@@ -31,7 +31,7 @@ public class AuditoriaServlet extends HttpServlet {
             return;
         }
         Usuario usuario = (Usuario) session.getAttribute("usuario");
-        if (!usuario.tieneRol("ADMINISTRADOR") && !usuario.tieneRol("AUDITOR")) {
+        if (!usuario.tieneRol("ADMINISTRADOR")) {
             response.sendRedirect(request.getContextPath() + "/acceso_denegado.jsp");
             return;
         }

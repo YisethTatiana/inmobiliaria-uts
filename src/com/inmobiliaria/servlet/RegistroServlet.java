@@ -22,10 +22,26 @@ public class RegistroServlet extends HttpServlet {
         String correo = request.getParameter("correo");
         String password = request.getParameter("password");
         String confirmar = request.getParameter("confirmar");
+        String nombres = request.getParameter("nombres");
+        String apellidos = request.getParameter("apellidos");
+        String documento = request.getParameter("documento");
+        String telefono = request.getParameter("telefono");
 
+        if (nombres == null || nombres.trim().isEmpty()
+                || apellidos == null || apellidos.trim().isEmpty()) {
+            request.setAttribute("error", "Debe ingresar sus nombres y apellidos.");
+            reenviar(request, response);
+            return;
+        }
+        if (documento == null || documento.trim().isEmpty()
+                || !documento.trim().matches("\\d{6,12}")) {
+            request.setAttribute("error", "Ingrese un número de documento válido (solo dígitos).");
+            reenviar(request, response);
+            return;
+        }
         if (correo == null || correo.trim().isEmpty()
                 || !correo.trim().matches("^[\\w.+-]+@[\\w-]+(\\.[\\w-]+)+$")) {
-            request.setAttribute("error", "Ingrese un correo electrónico válido.");
+            request.setAttribute("error", "Ingrese un correo eléctrónico válido.");
             reenviar(request, response);
             return;
         }
@@ -41,13 +57,21 @@ public class RegistroServlet extends HttpServlet {
         }
 
         try {
-            boolean exito = usuarioDAO.registrarUsuario(correo.trim(), password, 3);
+            boolean exito = usuarioDAO.registrarUsuario(correo.trim(), password, 3,
+                    nombres.trim(), apellidos.trim(), documento.trim(),
+                    telefono != null ? telefono.trim() : "");
             if (exito) {
                 response.sendRedirect("login.jsp?registro=exito");
+                return;
             }
+            request.setAttribute("error", "Error al procesar el registro.");
+            reenviar(request, response);
         } catch (SQLException e) {
             if (e.getErrorCode() == 1062) {
-                request.setAttribute("error", "El correo ya se encuentra registrado.");
+                String mensaje = e.getMessage() != null && e.getMessage().contains("documento")
+                        ? "El documento ya se encuentra registrado."
+                        : "El correo ya se encuentra registrado.";
+                request.setAttribute("error", mensaje);
             } else {
                 request.setAttribute("error", "Error al procesar el registro.");
             }

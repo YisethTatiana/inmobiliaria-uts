@@ -114,6 +114,8 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 
 ## 5. Administración del proyecto (Gráfica Burn-down acumulada)
 
+**Tablero Scrum (imagen):** `imagenes/tablero_scrum.png` — columnas Pendiente / En Progreso / Hecho por sprint, con las historias H1–H15 y su estimación en puntos.
+
 | Sprint | Puntos planificados | Puntos comprometidos | Puntos entregados | Días |
 |---|---|---|---|---|
 | Sprint 1 | 21 | 14 | 14 | 7 |

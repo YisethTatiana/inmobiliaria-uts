@@ -9,6 +9,10 @@ Las 5 consultas exigidas están en `database/consultas.sql`.
 
 ## 1. Modelo Entidad-Relación (MER)
 
+**Diagrama (imagen):** `imagenes/MER.png` — 17 entidades y las relaciones 1:1, 1:N y N:M (filas de relación marcadas con diamante).
+
+**Diagrama del esquema relacional (tablas y claves):** `imagenes/modelo_relacional.png`.
+
 ```
 ROL *----------------+ * USUARIO      USUARIO 1---------0..1 PERFIL
                        |                  |
@@ -92,6 +96,7 @@ Todas las tablas cumplen 3FN (sin dependencias transitivas; las dependencias par
 - Passwords de prueba (formato `SHA256(salt+clave)` codificado en Base64, separado por `:`):
   - `admin123`  → `eBsYNqFXdwobDSUNwxibetS1yq4o0P3/IHShZrvYC3s=:xuQYqfgMLSGoISZGmFM+vg==`
   - `agente123` → `s6P+4lQksbPZdYxBbKb/+bhTNGckidTNUnU+OzMujlk=:SO03E7AAY7d3mFG3cxdH7A==`
-  - `cliente123` → `dbckey3ry4Z+7EM2K6fVJTM6E+X0zD3teGQ6utiYGz4=:Ar2i1722o6itjXaWglDYaQ==`
+- Las cuentas CLIENTE no se siembran en el DML; se crean desde el registro público
+  (`registro.jsp`).
 - Fechas: `yyyy-MM-dd HH:mm:ss` (MySQL `DATETIME`/`TIMESTAMP`).
 - Moneda: `DECIMAL(14,2)`, formateo `#,###.##` en las vistas.

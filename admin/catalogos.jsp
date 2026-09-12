@@ -1,10 +1,10 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%@ page import="com.inmobiliaria.modelo.Caracteristica" %>
 <%
-    request.setAttribute("titulo", "Catálogos");
+    request.setAttribute("titulo", "Cat\u00E1logos");
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     String ctx = request.getContextPath();
     if (usuario == null) {
@@ -63,7 +63,7 @@
                                             <form action="<%= ctx %>/AdminCatalogoServlet" method="post">
                                                 <input type="hidden" name="accion" value="tipoEliminar">
                                                 <input type="hidden" name="id" value="<%= t.get("id") %>">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar este tipo de propiedad?');">Eliminar</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('&#191;Eliminar este tipo de propiedad?');">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -105,7 +105,7 @@
                                             <form action="<%= ctx %>/AdminCatalogoServlet" method="post">
                                                 <input type="hidden" name="accion" value="ciudadEliminar">
                                                 <input type="hidden" name="id" value="<%= c.get("id") %>">
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar esta ciudad?');">Eliminar</button>
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('&#191;Eliminar esta ciudad?');">Eliminar</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -149,7 +149,7 @@
                                         <form action="<%= ctx %>/AdminCatalogoServlet" method="post">
                                             <input type="hidden" name="accion" value="caracteristicaEliminar">
                                             <input type="hidden" name="id" value="<%= c.getIdCaracteristica() %>">
-                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('¿Eliminar esta caracter&iacute;stica?');">Eliminar</button>
+                                            <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('&#191;Eliminar esta caracter&iacute;stica?');">Eliminar</button>
                                         </form>
                                     </td>
                                 </tr>

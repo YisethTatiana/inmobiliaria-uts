@@ -43,6 +43,7 @@ public class ReporteServlet extends HttpServlet {
             List<Map<String, Object>> propiedadesCompletas = reporteDAO.propiedadesCompletas();
             List<Map<String, Object>> porCiudadEstado = reporteDAO.propiedadesPorCiudadYEstado();
             List<Map<String, Object>> solicitudesPorInmobiliaria = reporteDAO.solicitudesPorInmobiliaria();
+            List<Map<String, Object>> citasPorEstado = reporteDAO.citasPorEstado();
             List<Map<String, Object>> caracteristicas = reporteDAO.caracteristicasDePropiedad(1);
 
             request.setAttribute("citas", citas);
@@ -51,6 +52,7 @@ public class ReporteServlet extends HttpServlet {
             request.setAttribute("propiedadesCompletas", propiedadesCompletas);
             request.setAttribute("porCiudadEstado", porCiudadEstado);
             request.setAttribute("solicitudesInmobiliaria", solicitudesPorInmobiliaria);
+            request.setAttribute("citasPorEstado", citasPorEstado);
             request.setAttribute("caracteristicasDePropiedad", caracteristicas);
 
             if (esAgente) {

@@ -47,7 +47,7 @@ public class LoginServlet extends HttpServlet {
                 auditoriaDAO.registrar(usuario.getIdUsuario(), "LOGIN", "USUARIO",
                         usuario.getIdUsuario(), "Inicio de sesión", request.getRemoteAddr());
 
-                response.sendRedirect(request.getContextPath() + "/" + usuario.getPanelSegunRol());
+                response.sendRedirect(request.getContextPath() + usuario.getPanelSegunRol());
             } else {
                 request.setAttribute("error", "Credenciales incorrectas.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);

@@ -97,3 +97,13 @@ INNER JOIN cita c ON p.id_propiedad = c.id_propiedad
 GROUP BY p.id_propiedad, p.titulo, p.direccion
 HAVING COUNT(c.id_cita) > 0
 ORDER BY Numero_Citas DESC;
+
+-- ------------------------------------------------------------
+-- 5c) Agregación con GROUP BY: citas por estado (reporte
+--     requerido en el enunciado del proyecto).
+-- ------------------------------------------------------------
+SELECT c.estado AS Estado,
+       COUNT(*) AS Total
+FROM cita c
+GROUP BY c.estado
+ORDER BY Total DESC, Estado;
