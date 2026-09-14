@@ -1,10 +1,11 @@
 -- ============================================================
 -- INMOBILIARIA UTS - CONSULTAS AVANZADAS / REPORTES
--- Cinco consultas obligatorias:
---   1 y 2) dos INNER JOIN entre 3 o más tablas
+-- Cinco consultas obligatorias (J#1..J#4):
+--   1 y 2) dos INNER JOIN entre 3 o más tablas (módulo reportes)
 --   3)     una consulta que resuelve una relación N:M
---   4)     una consulta con LEFT JOIN
+--   4)     una consulta con LEFT JOIN (propiedades sin citas)
 --   5)     una consulta de agregación con GROUP BY y HAVING
+--          (las 5 propiedades más solicitadas)
 -- ============================================================
 
 USE inmobiliaria_db;
@@ -58,8 +59,53 @@ WHERE p.id_propiedad = 1
 ORDER BY c.nombre;
 
 -- ------------------------------------------------------------
--- 4) LEFT JOIN: todos los usuarios con su perfil y cantidad
---    de citas (muestra los que aún no tienen perfil).
+-- 4) LEFT JOIN (J#3 del enunciado): propiedades que aún NO tienen
+--    citas agendadas, con precio superior a $100.000.000.
+--    Muestra: título, descripción, precio, precio máximo (3 veces
+--    el precio) y precio mínimo como constante ($1.000.000).
+-- ------------------------------------------------------------
+SELECT p.titulo       AS Titulo,
+       p.descripcion  AS Descripcion,
+       p.precio       AS Precio,
+       (p.precio * 3) AS Precio_Maximo,
+       1000000        AS Precio_Minimo
+FROM propiedad p
+LEFT JOIN cita c ON p.id_propiedad = c.id_propiedad
+WHERE c.id_cita IS NULL
+  AND p.precio > 100000000
+ORDER BY p.precio DESC;
+
+-- ------------------------------------------------------------
+-- 5) Agregación con GROUP BY y HAVING (J#4 del enunciado): las
+--    5 propiedades más solicitadas (mayor número de citas).
+-- ------------------------------------------------------------
+SELECT p.id_propiedad AS ID,
+       p.titulo       AS Propiedad,
+       p.direccion    AS Ubicacion,
+       COUNT(c.id_cita) AS Numero_Citas
+FROM propiedad p
+INNER JOIN cita c ON p.id_propiedad = c.id_propiedad
+GROUP BY p.id_propiedad, p.titulo, p.direccion
+HAVING COUNT(c.id_cita) > 0
+ORDER BY Numero_Citas DESC
+LIMIT 5;
+
+-- ------------------------------------------------------------
+-- ADICIONAL A) GROUP BY y HAVING: propiedades por ciudad y estado
+--              (alimenta el reporte del administrador).
+-- ------------------------------------------------------------
+SELECT ci.nombre AS Ciudad,
+       p.estado  AS Estado,
+       COUNT(*)  AS Total
+FROM propiedad p
+INNER JOIN ciudad ci ON p.id_ciudad = ci.id_ciudad
+GROUP BY ci.nombre, p.estado
+HAVING COUNT(*) >= 1
+ORDER BY Total DESC, Ciudad;
+
+-- ------------------------------------------------------------
+-- ADICIONAL B) LEFT JOIN: todos los usuarios con su perfil y
+--              cantidad de citas (muestra los que aún no tienen perfil).
 -- ------------------------------------------------------------
 SELECT u.id_usuario                       AS ID,
        u.correo                           AS Correo,
@@ -72,35 +118,8 @@ GROUP BY u.id_usuario, u.correo, pf.nombres, pf.apellidos
 ORDER BY Cantidad_Citas DESC, u.id_usuario;
 
 -- ------------------------------------------------------------
--- 5) Agregación con GROUP BY y HAVING: propiedades por
---    ciudad y estado (alimenta el reporte del administrador).
--- ------------------------------------------------------------
-SELECT ci.nombre AS Ciudad,
-       p.estado  AS Estado,
-       COUNT(*)  AS Total
-FROM propiedad p
-INNER JOIN ciudad ci ON p.id_ciudad = ci.id_ciudad
-GROUP BY ci.nombre, p.estado
-HAVING COUNT(*) >= 1
-ORDER BY Total DESC, Ciudad;
-
--- ------------------------------------------------------------
--- 5b) Agregación con GROUP BY y HAVING: propiedades más
---     solicitadas (alimenta el reporte por cita).
--- ------------------------------------------------------------
-SELECT p.id_propiedad AS ID,
-       p.titulo       AS Propiedad,
-       p.direccion    AS Ubicacion,
-       COUNT(c.id_cita) AS Numero_Citas
-FROM propiedad p
-INNER JOIN cita c ON p.id_propiedad = c.id_propiedad
-GROUP BY p.id_propiedad, p.titulo, p.direccion
-HAVING COUNT(c.id_cita) > 0
-ORDER BY Numero_Citas DESC;
-
--- ------------------------------------------------------------
--- 5c) Agregación con GROUP BY: citas por estado (reporte
---     requerido en el enunciado del proyecto).
+-- ADICIONAL C) Agregación con GROUP BY: citas por estado
+--              (reporte requerido en el enunciado del proyecto).
 -- ------------------------------------------------------------
 SELECT c.estado AS Estado,
        COUNT(*) AS Total

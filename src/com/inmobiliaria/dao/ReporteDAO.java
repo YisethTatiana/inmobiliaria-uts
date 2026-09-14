@@ -128,9 +128,9 @@ public class ReporteDAO {
                    + "COUNT(c.id_cita) AS Numero_Citas "
                    + "FROM propiedad p "
                    + "INNER JOIN cita c ON p.id_propiedad = c.id_propiedad "
-                   + "GROUP BY p.id_propiedad, p.titulo, p.direccion "
-                   + "HAVING COUNT(c.id_cita) > 0 "
-                   + "ORDER BY Numero_Citas DESC";
++ "GROUP BY p.id_propiedad, p.titulo, p.direccion "
+                    + "HAVING COUNT(c.id_cita) > 0 "
+                    + "ORDER BY Numero_Citas DESC LIMIT 5";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql);
