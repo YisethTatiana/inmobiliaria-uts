@@ -47,12 +47,13 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 | Rol | Correo | Clave |
 |---|---|---|
 | Administrador | `admin@inmobiliaria.com` | `admin123` |
-| Inmobiliaria (agente) | `agente1@inmobiliaria.com` | `agente123` |
-| Cliente | se crea desde "Registrarse" (no hay cuentas clientes sembradas) | la que definas |
+| Inmobiliaria (agente) | `agente1@inmobiliaria.com`, `agente2@inmobiliaria.com`, `agente3@inmobiliaria.com` | `agente123` |
+| Cliente | `cliente1@inmobiliaria.com` … `cliente6@inmobiliaria.com` | `cliente123` |
 
-> Solo se siembran 2 cuentas (admin y agente1); los clientes se registran desde
-> "Registrarse". El login bloquea la cuenta 15 min tras 5 intentos fallidos y hay
-> recuperación de contraseña por correo con **código de 6 dígitos**
+> El DML siembra **10 cuentas** (1 admin, 3 agentes y 6 clientes) para que los
+> paneles y reportes de todos los roles tengan datos; los clientes también pueden
+> crearse desde "Registrarse". El login bloquea la cuenta 15 min tras 5 intentos
+> fallidos y hay recuperación de contraseña por correo con **código de 6 dígitos**
 > (`/recuperar_clave.jsp`). El código se envía por SMTP a través de **Mailjet**
 > (configurado en `WEB-INF/classes/smtp.properties`, archivo protegido por
 > `.gitignore`); no se guarda nada en archivos. Las propiedades indican si están
@@ -61,9 +62,11 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 > desde su panel.
 
 > Las contraseñas se almacenan cifradas (SHA-256 + salt). Ver detalle en `docs/MODELO_DATOS.md`.
-> El DML siembra 2 cuentas, 12 propiedades con imágenes reales de inmuebles,
-> 10+ registros en catálogos y auditoría. Las citas/solicitudes/favoritos se
-> generan cuando se registre un cliente.
+> El DML siembra 12 propiedades con imágenes reales de inmuebles, 10+ registros
+> en catálogos y **mínimo 10 registros por tabla principal** (incluye citas,
+> solicitudes, documentos y favoritos), validando las relaciones 1:1, 1:N y N:M.
+> Las cuentas adicionales reutilizan el hash de la contraseña demo de su perfil;
+> en producción debe generarse un hash individual por cuenta.
 
 ## Documentación
 - `docs/MODELO_DATOS.md` — MER, modelo relacional 3FN y diccionario de datos.

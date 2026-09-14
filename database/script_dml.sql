@@ -4,10 +4,12 @@
 --   admin123   -> admin@inmobiliaria.com
 --   agente123  -> agente1@inmobiliaria.com
 --   cliente123 -> cliente1@inmobiliaria.com (cuenta CLIENTE demo)
--- Cuentas vigentes: ADMINISTRADOR (1), INMOBILIARIA (2, agente1) y CLIENTE (3, demo)
--- con citas, solicitudes (con documentos) y favoritos sembrados sobre las
--- propiedades de la Inmobiliaria UTS (id_inmobiliaria = 1) para que el agente
--- tenga paneles y reportes con datos reales.
+-- Cuentas vigentes (10): ADMINISTRADOR (1), INMOBILIARIA (2, 4 y 5:
+-- agentes 1-3) y CLIENTE (3, 6-10: clientes 1-6). La ampliación de
+-- semilla al final garantiza >=10 registros por tabla principal;
+-- las cuentas adicionales REUTILIZAN las contraseñas demo
+-- documentadas (admin123 / agente123 / cliente123) para poder probar
+-- todos los perfiles con las credenciales publicadas en el manual.
 -- Las imágenes de propiedades usan fotografías reales de inmuebles
 -- (Unsplash) acordes a cada tipo de propiedad.
 -- ============================================================
@@ -173,3 +175,87 @@ INSERT INTO auditoria (id_usuario, accion, entidad, id_entidad, detalle, ip) VAL
 (1,  'CREAR',    'TIPO',      5,  'Registró el tipo de propiedad Terreno',         '127.0.0.1'),
 (1,  'LOGIN',    'USUARIO',   1,  'Segundo inicio de sesión del administrador',    '127.0.0.1'),
 (2,  'LOGOUT',   'USUARIO',   2,  'Cierre de sesión del agente 1',                 '192.168.1.20');
+
+-- ============================================================
+-- AMPLIACIÓN DE SEMILLA: garantiza >= 10 registros por tabla
+-- principal (espín de la entrega). Las cuentas adicionales
+-- REUTILIZAN los hashes de contraseña demo ya documentados
+-- (admin123 / agente123 / cliente123); en un entorno productivo
+-- debe generarse un hash individual por cuenta.
+-- ============================================================
+
+-- ------------------------------------------------ ROLES (3 + 7 = 10)
+INSERT INTO rol (id_rol, nombre, descripcion) VALUES
+(4, 'VISITANTE',       'Usuario anónimo: solo navega y filtra el catálogo'),
+(5, 'DIRECCION',       'Nivel directivo: aprueba operaciones y consulta reportes'),
+(6, 'FINANCIERO',      'Gestión de precios, recaudo y comisiones'),
+(7, 'MARKETING',       'Publicidad y campañas de las propiedades'),
+(8, 'CONTABILIDAD',    'Contabilidad, facturación y cierre contable'),
+(9, 'JURIDICO',        'Revisión legal de contratos y documentos'),
+(10, 'SOPORTE_TECNICO','Atención de incidencias de la plataforma');
+
+-- ------------------------------------------------ TIPOS DE PROPIEDAD (5 + 5 = 10)
+INSERT INTO tipo_propiedad (id_tipo, nombre) VALUES
+(6, 'Bodega'), (7, 'Parqueadero'), (8, 'Consultorio'),
+(9, 'Casa campestre'), (10, 'Edificio');
+
+-- ------------------------------------------------ INMOBILIARIAS (3 + 7 = 10)
+INSERT INTO inmobiliaria (id_inmobiliaria, nombre, nit, correo_contacto, telefono, direccion) VALUES
+(4, 'Inmobiliaria del Norte',       '900.100.004-4', 'contacto@norte.com',    '601 888 0001', 'Av Calle 127 # 154, Bogotá'),
+(5, 'Inmobiliaria Jardín Real',     '900.100.005-5', 'hola@jardinreal.com',  '604 444 0010', 'Calle 5A # 17-30, Medellín'),
+(6, 'Inmobiliaria Costa Caribe',    '900.100.006-6', 'ventas@costacaribe.com','605 335 2200', 'Cra 51 B # 39-51, Barranquilla'),
+(7, 'Inmobiliaria Colonial',        '900.100.007-7', 'info@colonial.com',    '605 640 1212', 'Calle del Coliseo # 0-90, Cartagena'),
+(8, 'Inmobiliaria del Café',        '900.100.008-8', 'agencias@delcafe.com', '606 884 4400', 'Cra 20 # 8-12, Manizales'),
+(9, 'Inmobiliaria Sur Andina',      '900.100.009-9', 'contacto@surs.com',    '606 321 0009', 'Calle 18 # 8-55, Pereira'),
+(10, 'Inmobiliaria Litoral',        '900.100.010-0', 'info@litoral.com',     '605 423 3333', 'Calle 29 # 25-10, Santa Marta');
+
+-- ------------------------------------------------ USUARIOS (3 + 7 = 10) — contraseñas demo reutilizadas
+INSERT INTO usuario (id_usuario, correo, password_hash, activo) VALUES
+(4, 'agente2@inmobiliaria.com',    's6P+4lQksbPZdYxBbKb/+bhTNGckidTNUnU+OzMujlk=:SO03E7AAY7d3mFG3cxdH7A==', 1),
+(5, 'agente3@inmobiliaria.com',    's6P+4lQksbPZdYxBbKb/+bhTNGckidTNUnU+OzMujlk=:SO03E7AAY7d3mFG3cxdH7A==', 1),
+(6, 'cliente2@inmobiliaria.com',   'aHudONtG1X1GzK996IfmcRlsxLx65zztXKBEfzPTPmY=:aW5tby1zYWx0LWRiLTIwMjY=', 1),
+(7, 'cliente3@inmobiliaria.com',   'aHudONtG1X1GzK996IfmcRlsxLx65zztXKBEfzPTPmY=:aW5tby1zYWx0LWRiLTIwMjY=', 1),
+(8, 'cliente4@inmobiliaria.com',   'aHudONtG1X1GzK996IfmcRlsxLx65zztXKBEfzPTPmY=:aW5tby1zYWx0LWRiLTIwMjY=', 1),
+(9, 'cliente5@inmobiliaria.com',   'aHudONtG1X1GzK996IfmcRlsxLx65zztXKBEfzPTPmY=:aW5tby1zYWx0LWRiLTIwMjY=', 1),
+(10,'cliente6@inmobiliaria.com',   'aHudONtG1X1GzK996IfmcRlsxLx65zztXKBEfzPTPmY=:aW5tby1zYWx0LWRiLTIwMjY=', 1);
+
+-- ------------------------------------------------ USUARIO_ROL (N:M, 3 + 7 = 10)
+INSERT INTO usuario_rol (id_usuario, id_rol) VALUES
+(4, 2), (5, 2), (6, 3), (7, 3), (8, 3), (9, 3), (10, 3);
+
+-- ------------------------------------------------ USUARIO_INMOBILIARIA (agentes -> inmobiliarias, 1 + 9 = 10)
+INSERT INTO usuario_inmobiliaria (id_usuario, id_inmobiliaria) VALUES
+(2, 4), (2, 5), (4, 2), (4, 6), (5, 3), (5, 7), (2, 8), (4, 9), (5, 10);
+
+-- ------------------------------------------------ PERFIL (1:1 con usuario, 3 + 7 = 10)
+INSERT INTO perfil (id_perfil, id_usuario, nombres, apellidos, documento, telefono, direccion) VALUES
+(4, 4, 'Ana',           'Rojas Peña',     '1098000004', '300 444 0004', 'Cra 27 # 34-10, Bucaramanga'),
+(5, 5, 'Jorge',         'Martínez Cruz',  '1098000005', '301 555 0005', 'Calle 51 # 29-40, Bucaramanga'),
+(6, 6, 'Diana',         'Morales Ruiz',   '1098000006', '302 666 0006', 'Calle 45 # 23-18, Bucaramanga'),
+(7, 7, 'Felipe',        'Ortega Salas',   '1098000007', '303 777 0007', 'Cra 33 # 50-12, Bucaramanga'),
+(8, 8, 'Valentina',     'Castro Lima',    '1098000008', '304 888 0008', 'Calle 46 # 35-22, Bucaramanga'),
+(9, 9, 'Andrés',        'Vargas Uribe',   '1098000009', '305 999 0009', 'Cra 30 # 48-10, Bucaramanga'),
+(10, 10, 'Paula',       'Suárez Gallego', '1098000010', '306 000 0010', 'Calle 53 # 28-15, Bucaramanga');
+
+-- ------------------------------------------------ FAVORITOS (N:M, 4 + 6 = 10)
+INSERT INTO favorito (id_usuario, id_propiedad) VALUES
+(6, 2), (6, 7), (7, 3), (7, 10), (8, 1), (8, 8);
+
+-- ------------------------------------------------ SOLICITUDES (3 + 7 = 10)
+INSERT INTO solicitud (id_solicitud, id_usuario_cliente, id_propiedad, tipo_solicitud, estado, observaciones) VALUES
+(4, 6, 2,  'COMPRA',   'RADICADA',  'Solicitud de compra del cliente 2'),
+(5, 6, 6,  'ARRIENDO', 'RADICADA',  'Arriendo con mascota permitido'),
+(6, 7, 10, 'COMPRA',   'APROBADA',  'Crédito preaprobado de Bancolombia'),
+(7, 7, 12, 'ARRIENDO', 'RADICADA',  'Contrato por 12 meses'),
+(8, 8, 3,  'COMPRA',   'RADICADA',  'En estudio de referencias'),
+(9, 9, 7,  'ARRIENDO', 'RECHAZADA', 'Documentación incompleta'),
+(10, 10, 9, 'COMPRA',  'RADICADA',  'Pendiente de visita del perito');
+
+-- ------------------------------------------------ DOCUMENTO_SOLICITUD (4 + 6 = 10)
+INSERT INTO documento_solicitud (id_documento, id_solicitud, nombre_archivo, ruta, tipo_documento) VALUES
+(5, 4, 'cedula_cliente2.pdf',        'uploads/solicitud_4/cedula.pdf',        'Cédula'),
+(6, 5, 'certificado_ingresos.pdf',   'uploads/solicitud_5/certificado.pdf',   'Certificado de ingresos'),
+(7, 6, 'certificado_tradicion.pdf',  'uploads/solicitud_6/tradicion.pdf',     'Certificado de tradición'),
+(8, 7, 'referencias_arraigo.pdf',    'uploads/solicitud_7/referencias.pdf',   'Referencias'),
+(9, 8, 'desprendible_pago.pdf',      'uploads/solicitud_8/desprendible.pdf',  'Desprendible de pago'),
+(10, 9, 'certificado_laboral.pdf',   'uploads/solicitud_9/laboral.pdf',       'Certificado laboral');

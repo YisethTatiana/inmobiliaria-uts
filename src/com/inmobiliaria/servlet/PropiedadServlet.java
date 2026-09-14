@@ -44,13 +44,25 @@ public class PropiedadServlet extends HttpServlet {
                 idTipo = Integer.parseInt(tipo);
             }
 
+            List<Integer> idCaracteristicas = new ArrayList<>();
+            String[] caract = request.getParameterValues("caracteristicas");
+            if (caract != null) {
+                for (String c : caract) {
+                    if (c != null && c.matches("\\d+") && !idCaracteristicas.contains(Integer.parseInt(c))) {
+                        idCaracteristicas.add(Integer.parseInt(c));
+                    }
+                }
+            }
+
             List<Propiedad> lista;
             if (texto == null && idCiudad == null && idTipo == null
                     && (precioMin == null || precioMin.isEmpty())
-                    && (precioMax == null || precioMax.isEmpty())) {
+                    && (precioMax == null || precioMax.isEmpty())
+                    && idCaracteristicas.isEmpty()) {
                 lista = propiedadDAO.listarTodas(true);
             } else {
-                lista = propiedadDAO.buscarConFiltros(texto, idCiudad, idTipo, precioMin, precioMax, "DISPONIBLE", null);
+                lista = propiedadDAO.buscarConFiltros(texto, idCiudad, idTipo, precioMin, precioMax,
+                        "DISPONIBLE", null, idCaracteristicas);
             }
             request.setAttribute("propiedades", lista);
 
@@ -65,8 +77,11 @@ public class PropiedadServlet extends HttpServlet {
 
             List<Map<String, Object>> ciudades = catalogoDAO.listarCiudades();
             List<Map<String, Object>> tipos = catalogoDAO.listarTipos();
+            List<Map<String, Object>> caracteristicas = catalogoDAO.listarCaracteristicas();
             request.setAttribute("ciudades", ciudades);
             request.setAttribute("tipos", tipos);
+            request.setAttribute("caracteristicas", caracteristicas);
+            request.setAttribute("filtrosCaracteristicas", idCaracteristicas);
 
             request.setAttribute("filtroTexto", texto == null ? "" : texto);
             request.setAttribute("filtroCiudad", ciudad == null ? "" : ciudad);
@@ -77,7 +92,13 @@ public class PropiedadServlet extends HttpServlet {
             request.getRequestDispatcher("cliente/catalogo.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("cliente/dashboard_cliente.jsp?error=true");
+            HttpSession session = request.getSession(false);
+            Usuario usuario = (session != null) ? (Usuario) session.getAttribute("usuario") : null;
+            if (usuario != null) {
+                response.sendRedirect("cliente/dashboard_cliente.jsp?error=true");
+            } else {
+                response.sendRedirect("index.jsp?error=true");
+            }
         }
     }
 }

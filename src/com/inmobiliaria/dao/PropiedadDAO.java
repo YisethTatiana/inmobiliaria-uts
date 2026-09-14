@@ -69,7 +69,7 @@ public class PropiedadDAO {
 
     public List<Propiedad> buscarConFiltros(String texto, Integer idCiudad, Integer idTipo,
                                             String precioMin, String precioMax, String estado,
-                                            Integer idInmobiliaria) throws SQLException {
+                                            Integer idInmobiliaria, List<Integer> idCaracteristicas) throws SQLException {
         List<Propiedad> lista = new ArrayList<>();
         String sql = "SELECT " + CAMPOS + DESDE + "WHERE 1=1 ";
 
@@ -94,6 +94,19 @@ public class PropiedadDAO {
         }
         if (idInmobiliaria != null && idInmobiliaria > 0) {
             sql += "AND p.id_inmobiliaria = ? ";
+        }
+        if (idCaracteristicas != null && !idCaracteristicas.isEmpty()) {
+            // N:M: la propiedad debe tener TODAS las características seleccionadas
+            StringBuilder ph = new StringBuilder();
+            for (int i = 0; i < idCaracteristicas.size(); i++) {
+                if (i > 0) {
+                    ph.append(", ");
+                }
+                ph.append("?");
+            }
+            sql += "AND p.id_propiedad IN (SELECT pc.id_propiedad FROM propiedad_caracteristica pc "
+                 + "WHERE pc.id_caracteristica IN (" + ph + ") GROUP BY pc.id_propiedad "
+                 + "HAVING COUNT(DISTINCT pc.id_caracteristica) = ?) ";
         }
         sql += "ORDER BY p.fecha_publicacion DESC";
 
@@ -122,6 +135,12 @@ public class PropiedadDAO {
             }
             if (idInmobiliaria != null && idInmobiliaria > 0) {
                 ps.setInt(idx++, idInmobiliaria);
+            }
+            if (idCaracteristicas != null && !idCaracteristicas.isEmpty()) {
+                for (Integer idc : idCaracteristicas) {
+                    ps.setInt(idx++, idc);
+                }
+                ps.setInt(idx++, idCaracteristicas.size());
             }
 
             try (ResultSet rs = ps.executeQuery()) {

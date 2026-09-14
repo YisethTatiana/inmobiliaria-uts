@@ -96,10 +96,11 @@ Todas las tablas cumplen 3FN (sin dependencias transitivas; las dependencias par
 - Passwords de prueba (formato `SHA256(salt+clave)` codificado en Base64, separado por `:`):
   - `admin123`  → `eBsYNqFXdwobDSUNwxibetS1yq4o0P3/IHShZrvYC3s=:xuQYqfgMLSGoISZGmFM+vg==`
   - `agente123` → `s6P+4lQksbPZdYxBbKb/+bhTNGckidTNUnU+OzMujlk=:SO03E7AAY7d3mFG3cxdH7A==`
-- Solo se siembran 2 cuentas: **ADMINISTRADOR** y **INMOBILIARIA (agente1)**.
-  Las cuentas **CLIENTE** se crean desde "Registrarse" (registro público bajo
-  demanda); por eso las tablas que dependen de un cliente (cita, solicitud,
-  documento_solicitud, favorito) quedan vacías hasta que exista un cliente.
+- El DML siembra **10 cuentas** (1 admin, 3 agentes y 6 clientes) + catálogos y
+  auditoría. `cliente1` incluye citas, solicitudes (con documentos) y favoritos
+  sobre las propiedades de la Inmobiliaria UTS para alimentar los paneles y
+  reportes del agente; la ampliación de semilla al final del `script_dml.sql`
+  garantiza **>=10 registros por tabla principal**.
 - Seguridad de acceso:
   - **Bloqueo temporal:** tras `MAX_INTENTOS` (5) fallos de contraseña la
     cuenta se bloquea durante `MINUTOS_BLOQUEO` (15) minutos

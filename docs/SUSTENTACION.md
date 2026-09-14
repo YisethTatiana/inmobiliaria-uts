@@ -7,15 +7,19 @@
 - **Reportes:** ventas (operación Venta/estado Vendida), arriendos, propiedades por ciudad/estado, top 5 más solicitadas, citas por estado.
 
 ## 2. Roles y verificación del control de acceso
-Los 4 roles se representan en `usuario_rol` (N:M). El servlet `FiltroSeguridad` intercepta cada ruta; si el rol no coincide vía las tablas `usuario_rol`–`rol`, redirige al login con marca de "no autorizado".
+Los 4 roles se representan en `usuario_rol` (N:M). El filtro `FiltroAutenticacion`
+intercepta cada ruta (`/admin/*`, `/agente/*`, `/cliente/*`); si el rol no
+coincide vía las tablas `usuario_rol`–`rol`, redirige al login o a
+`acceso_denegado.jsp`.
 
 ## 3. Modelo de datos y cardinalidades
 - **1:1** → `perfil.id_usuario` es UNIQUE (un usuario = un perfil).
-- **1:N** → `imagen_propiedad.id_propiedad`, `cita.id_propiedad`, `solicitud.documento`.
+- **1:N** → `imagen_propiedad.id_propiedad`, `cita.id_propiedad`,
+  `documento_solicitud.id_solicitud`.
 - **N:M** → `propiedad_caracteristica` y `usuario_rol` con sus tablas intermedias.
 - **UNIQUE** → `usuario.correo`, `propiedad.matricula_inmobiliaria`, `perfil.documento`, `cita(id_propiedad, fecha_hora)`; la app captura el error de duplicado y muestra un mensaje claro ("el correo ya se encuentra registrado", "la matrícula ya se encuentra registrada").
 
-## 4. La consulta de LEFT JOIN (J#3)
+## 4. La consulta de LEFT JOIN (J#4)
 ```sql
 SELECT p.titulo AS Titulo, p.descripcion AS Descripcion, p.precio AS Precio,
        (p.precio * 3) AS Precio_Maximo, 1000000 AS Precio_Minimo
@@ -26,7 +30,7 @@ ORDER BY p.precio DESC;
 ```
 **Para qué sirve:** lista las propiedades que aún **no tienen citas** (LEFT JOIN conserva las propiedades sin coincidencia en `cita`; `WHERE c.id_cita IS NULL` filtra solo las que no se han agendado). Además de precio y descripción, se calcula *precio máximo* (3 veces el precio) y el *precio mínimo* como constante ($1.000.000). En el sistema se usa para identificar inmuebles poco visitados y priorizar la promoción.
 
-## 5. Para qué sirvió la consulta N:M (J#2)
+## 5. Para qué sirvió la consulta N:M (J#3)
 La consulta sobre `propiedad_caracteristica` muestra qué características (garaje, piscina, seguridad…) tiene cada propiedad. Sirvió para construir la ficha del detalle y el filtro por características del catálogo, y para el reporte de inventario.
 
 ## 6. Permisos excluidos (justificación)

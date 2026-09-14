@@ -1,11 +1,11 @@
 -- ============================================================
 -- INMOBILIARIA UTS - CONSULTAS AVANZADAS / REPORTES
--- Cinco consultas obligatorias (J#1..J#4):
---   1 y 2) dos INNER JOIN entre 3 o más tablas (módulo reportes)
---   3)     una consulta que resuelve una relación N:M
---   4)     una consulta con LEFT JOIN (propiedades sin citas)
---   5)     una consulta de agregación con GROUP BY y HAVING
---          (las 5 propiedades más solicitadas)
+-- Cinco consultas obligatorias (J#1..J#5):
+--   J#1 y J#2) dos INNER JOIN entre 3 o más tablas (módulo reportes)
+--   J#3)       una consulta que resuelve una relación N:M
+--   J#4)       una consulta con LEFT JOIN (propiedades sin citas)
+--   J#5)       una consulta de agregación con GROUP BY y HAVING
+--             (las 5 propiedades más solicitadas)
 -- ============================================================
 
 USE inmobiliaria_db;
@@ -59,7 +59,7 @@ WHERE p.id_propiedad = 1
 ORDER BY c.nombre;
 
 -- ------------------------------------------------------------
--- 4) LEFT JOIN (J#3 del enunciado): propiedades que aún NO tienen
+-- 4) LEFT JOIN (J#4 del enunciado): propiedades que aún NO tienen
 --    citas agendadas, con precio superior a $100.000.000.
 --    Muestra: título, descripción, precio, precio máximo (3 veces
 --    el precio) y precio mínimo como constante ($1.000.000).
@@ -76,7 +76,7 @@ WHERE c.id_cita IS NULL
 ORDER BY p.precio DESC;
 
 -- ------------------------------------------------------------
--- 5) Agregación con GROUP BY y HAVING (J#4 del enunciado): las
+-- 5) Agregación con GROUP BY y HAVING (J#5 del enunciado): las
 --    5 propiedades más solicitadas (mayor número de citas).
 -- ------------------------------------------------------------
 SELECT p.id_propiedad AS ID,

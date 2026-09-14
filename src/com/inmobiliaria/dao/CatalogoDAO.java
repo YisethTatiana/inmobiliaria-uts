@@ -117,6 +117,24 @@ public class CatalogoDAO {
         }
     }
 
+    public List<Map<String, Object>> listarCaracteristicas() throws SQLException {
+        List<Map<String, Object>> lista = new ArrayList<>();
+        String sql = "SELECT id_caracteristica, nombre FROM caracteristica ORDER BY id_caracteristica";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery()) {
+
+            while (rs.next()) {
+                Map<String, Object> f = new LinkedHashMap<>();
+                f.put("id", rs.getInt("id_caracteristica"));
+                f.put("nombre", rs.getString("nombre"));
+                lista.add(f);
+            }
+        }
+        return lista;
+    }
+
     public List<Map<String, Object>> listarInmobiliarias() throws SQLException {
         List<Map<String, Object>> lista = new ArrayList<>();
         String sql = "SELECT id_inmobiliaria, nombre FROM inmobiliaria ORDER BY id_inmobiliaria";

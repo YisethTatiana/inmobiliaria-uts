@@ -10,6 +10,10 @@
     List<Propiedad> propiedades = (List<Propiedad>) request.getAttribute("propiedades");
     List<Map<String, Object>> ciudades = (List<Map<String, Object>>) request.getAttribute("ciudades");
     List<Map<String, Object>> tipos = (List<Map<String, Object>>) request.getAttribute("tipos");
+    List<Map<String, Object>> caracteristicas = (List<Map<String, Object>>) request.getAttribute("caracteristicas");
+    List<Integer> filtrosCaracteristicas = (List<Integer>) request.getAttribute("filtrosCaracteristicas");
+    Set<Integer> misCaract = new HashSet<Integer>();
+    if (filtrosCaracteristicas != null) misCaract.addAll(filtrosCaracteristicas);
     List<Integer> idsFavoritos = (List<Integer>) request.getAttribute("idsFavoritos");
     Set<Integer> misFavs = new HashSet<Integer>();
     if (idsFavoritos != null) misFavs.addAll(idsFavoritos);
@@ -81,6 +85,20 @@
                     <input type="number" name="precioMax" class="form-control" min="0" step="100000"
                            value="<%= request.getAttribute("filtroPrecioMax") != null ? request.getAttribute("filtroPrecioMax") : "" %>"
                            placeholder="Precio m&#225;x.">
+                </div>
+                <div class="col-12 mt-2">
+                    <label class="form-label small fw-bold mb-1">Caracter&#237;sticas:</label>
+                    <div class="d-flex flex-wrap gap-3">
+                        <% if (caracteristicas != null) for (Map<String, Object> c : caracteristicas) {
+                            String carId = c.get("id").toString();
+                            String chk = misCaract.contains(Integer.parseInt(carId)) ? "checked" : ""; %>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" name="caracteristicas"
+                                       value="<%= carId %>" id="carac<%= carId %>" <%= chk %>>
+                                <label class="form-check-label small" for="carac<%= carId %>"><%= c.get("nombre") %></label>
+                            </div>
+                        <% } %>
+                    </div>
                 </div>
                 <div class="col-12 d-grid d-md-flex justify-content-md-end gap-2 mt-2">
                     <a href="<%= ctx %>/PropiedadServlet" class="btn btn-outline-secondary btn-sm">Limpiar</a>

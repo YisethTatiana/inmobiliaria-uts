@@ -2,6 +2,7 @@ package com.inmobiliaria.servlet;
 
 import com.inmobiliaria.dao.AuditoriaDAO;
 import com.inmobiliaria.dao.CitaDAO;
+import com.inmobiliaria.dao.UsuarioDAO;
 import com.inmobiliaria.modelo.Cita;
 import com.inmobiliaria.modelo.Usuario;
 
@@ -19,6 +20,7 @@ public class AgenteCitaServlet extends HttpServlet {
 
     private CitaDAO citaDAO = new CitaDAO();
     private AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     private boolean accesoValido(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
@@ -45,7 +47,14 @@ public class AgenteCitaServlet extends HttpServlet {
         }
 
         try {
-            List<Cita> citas = citaDAO.listarTodasConDetalles();
+            Usuario usuario = (Usuario) request.getSession(false).getAttribute("usuario");
+            List<Cita> citas;
+            if (usuario != null && usuario.tieneRol("INMOBILIARIA")) {
+                int idInmobiliaria = usuarioDAO.obtenerInmobiliaria(usuario.getIdUsuario());
+                citas = citaDAO.listarPorInmobiliariaConDetalles(idInmobiliaria);
+            } else {
+                citas = citaDAO.listarTodasConDetalles();
+            }
             request.setAttribute("citas", citas);
             request.getRequestDispatcher("/agente/citas.jsp").forward(request, response);
         } catch (Exception e) {
