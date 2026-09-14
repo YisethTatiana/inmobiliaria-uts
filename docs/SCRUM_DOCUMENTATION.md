@@ -125,7 +125,7 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 El equipo planificó el máximo (21), comprometió un total de 49 puntos en 3 sprints y los entregó en su totalidad (velocidad media ≈ 16,3 ptos/sprint).
 
 **Enlaces de seguimiento (en línea):**
-- Tablero de seguimiento: `[pegar aquí la URL de Tu/Trello/GitHub Projects]` *(pendiente: crear el tablero en línea y pegar el enlace)*
+- Tablero de seguimiento: `https://github.com/users/YisethTatiana/projects/1/views/1` *(tablero en línea creado en GitHub Projects)*
 - Repositorio Git público: `https://github.com/YisethTatiana/inmobiliaria-uts` *(creado y subido)*
 
 ## 6. Entregables y aceptación
