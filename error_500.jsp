@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" import="com.inmobiliaria.modelo.Usuario" %>
 <%
     request.setAttribute("titulo", "Error interno");
 %>
