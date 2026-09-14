@@ -3,9 +3,11 @@
 -- Contraseñas (hash SHA-256 con salt):
 --   admin123   -> admin@inmobiliaria.com
 --   agente123  -> agente1@inmobiliaria.com
--- Cuentas vigentes: solo ADMINISTRADOR (1) e INMOBILIARIA (2, agente1).
--- Las cuentas CLIENTE se crean desde "Registrarse"; por eso no hay
--- citas/solicitudes/favoritos sembrados (requieren un usuario CLIENTE).
+--   cliente123 -> cliente1@inmobiliaria.com (cuenta CLIENTE demo)
+-- Cuentas vigentes: ADMINISTRADOR (1), INMOBILIARIA (2, agente1) y CLIENTE (3, demo)
+-- con citas, solicitudes (con documentos) y favoritos sembrados sobre las
+-- propiedades de la Inmobiliaria UTS (id_inmobiliaria = 1) para que el agente
+-- tenga paneles y reportes con datos reales.
 -- Las imágenes de propiedades usan fotografías reales de inmuebles
 -- (Unsplash) acordes a cada tipo de propiedad.
 -- ============================================================
@@ -118,9 +120,44 @@ INSERT INTO propiedad_caracteristica (id_propiedad, id_caracteristica, cantidad)
 (11, 7, 1), (11, 8, 1),
 (12, 3, 1), (12, 4, 1);
 
--- Citas, solicitudes, documentos y favoritos NO se siembran porque no hay
--- cuentas CLIENTE (se crean desde "Registrarse"). Una vez exista un cliente
--- podrá agendar citas, radicar solicitudes y marcar favoritos normalmente.
+-- ------------------------------------------------ CLIENTE DEMO (permite citas, solicitudes y favoritos sembrados)
+INSERT INTO usuario (id_usuario, correo, password_hash, activo) VALUES
+(3, 'cliente1@inmobiliaria.com', 'aHudONtG1X1GzK996IfmcRlsxLx65zztXKBEfzPTPmY=:aW5tby1zYWx0LWRiLTIwMjY=', 1);
+
+INSERT INTO usuario_rol (id_usuario, id_rol) VALUES
+(3, 3);
+
+INSERT INTO perfil (id_perfil, id_usuario, nombres, apellidos, documento, telefono, direccion, foto) VALUES
+(3, 3, 'Carlos', 'Méndez Torres', '1098000003', '301 555 6677', 'Cabecera, Bucaramanga', NULL);
+
+-- ------------------------------------------------ FAVORITOS (N:M cliente - propiedad)
+INSERT INTO favorito (id_usuario, id_propiedad) VALUES
+(3, 1), (3, 5), (3, 6), (3, 9);
+
+-- ------------------------------------------------ CITAS (10) sobre propiedades de la Inmobiliaria UTS (inmobiliaria 1)
+INSERT INTO cita (id_cita, id_usuario_cliente, id_propiedad, fecha_hora, observaciones, estado) VALUES
+(2,  3, 1, '2026-09-20 10:00:00', 'Visita familiar',              'APROBADA'),
+(3,  3, 1, '2026-09-22 15:30:00', 'Segunda visita con mi esposa', 'PENDIENTE'),
+(4,  3, 5, '2026-09-21 09:00:00', 'Quiero recorrer el terreno',   'APROBADA'),
+(5,  3, 6, '2026-09-23 16:00:00', 'Reunión el fin de semana',     'PENDIENTE'),
+(6,  3, 7, '2026-09-25 11:00:00', 'Para mi hijo universitario',   'CANCELADA'),
+(7,  3, 1, '2026-08-30 10:00:00', 'Primera visita',               'COMPLETADA'),
+(8,  3, 6, '2026-08-15 17:00:00', 'Visita inicial',               'COMPLETADA'),
+(9,  3, 5, '2026-09-28 08:30:00', 'Pendiente por confirmar',      'PENDIENTE'),
+(10, 3, 7, '2026-09-29 14:00:00', 'Con el asesor comercial',      'APROBADA'),
+(11, 3, 6, '2026-10-02 10:30:00', 'Negociación de cláusulas',     'PENDIENTE');
+
+-- ------------------------------------------------ SOLICITUDES (3) con sus documentos (1:N)
+INSERT INTO solicitud (id_solicitud, id_usuario_cliente, id_propiedad, tipo_solicitud, estado, observaciones) VALUES
+(1, 3, 1, 'COMPRA',  'APROBADA', 'Crédito hipotecario preaprobado'),
+(2, 3, 6, 'ARRIENDO','RADICADA', 'Contrato anual con póliza'),
+(3, 3, 9, 'COMPRA',  'RADICADA', 'En espera de documentos de la inmobiliaria');
+
+INSERT INTO documento_solicitud (id_documento, id_solicitud, nombre_archivo, ruta, tipo_documento) VALUES
+(1, 1, 'cedula_carlos.pdf',               'uploads/solicitud_1/cedula_carlos.pdf',                'Cédula'),
+(2, 1, 'certificado_laboral.pdf',         'uploads/solicitud_1/certificado_laboral.pdf',          'Certificado laboral'),
+(3, 2, 'referencias.pdf',                 'uploads/solicitud_2/referencias.pdf',                  'Referencias'),
+(4, 3, 'certificado_tradicion.pdf',       'uploads/solicitud_3/certificado_tradicion.pdf',        'Certificado de tradición');
 
 -- ------------------------------------------------ AUDITORÍA (12 registros: admin y agente1)
 INSERT INTO auditoria (id_usuario, accion, entidad, id_entidad, detalle, ip) VALUES

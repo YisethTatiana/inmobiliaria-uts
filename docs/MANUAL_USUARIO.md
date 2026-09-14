@@ -28,3 +28,4 @@ Aplicación web JSP + JDBC + Bootstrap desplegada en Apache Tomcat.
 |---|---|---|
 | Administrador | `admin@inmobiliaria.com` | `admin123` |
 | Agente | `agente1@inmobiliaria.com` | `agente123` |
+| Cliente (demo) | `cliente1@inmobiliaria.com` | `cliente123` |
