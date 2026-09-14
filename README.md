@@ -90,7 +90,7 @@ Salida esperada: `[OK] PasswordUtilsTest ...`, `[OK] UsuarioTest ...` y
 
 El enunciado otorga puntos extra por una instancia en línea de la base de datos y
 de la aplicación. La cadena de conexión está centralizada en
-`src/com/inmobiliaria/conexion/ConexionBD.java`, así que basta cambiar el URL,
+`src/com/inmobiliaria/config/ConexionBD.java`, así que basta cambiar el URL,
 usuario y clave **solo allí**:
 
 ```java
