@@ -17,6 +17,7 @@ public class Propiedad {
     private int banios;
     private int parqueaderos;
     private String estado;
+    private String operacion;
     private int idCiudad;
     private int idTipo;
     private int idInmobiliaria;
@@ -66,6 +67,13 @@ public class Propiedad {
 
     public String getEstado() { return estado; }
     public void setEstado(String estado) { this.estado = estado; }
+
+    public String getOperacion() { return operacion; }
+    public void setOperacion(String operacion) { this.operacion = operacion; }
+
+    public String getOperacionEtiqueta() {
+        return "ARRIENDO".equalsIgnoreCase(operacion) ? "Arriendo" : "Venta";
+    }
 
     public int getIdCiudad() { return idCiudad; }
     public void setIdCiudad(int idCiudad) { this.idCiudad = idCiudad; }

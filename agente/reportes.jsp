@@ -43,6 +43,7 @@
     List<Map<String, Object>> solicitudesInmobiliaria = (List<Map<String, Object>>) request.getAttribute("solicitudesInmobiliaria");
     List<Map<String, Object>> citasPorEstado = (List<Map<String, Object>>) request.getAttribute("citasPorEstado");
     List<Map<String, Object>> caracteristicas = (List<Map<String, Object>>) request.getAttribute("caracteristicasDePropiedad");
+    List<Map<String, Object>> ventasArriendos = (List<Map<String, Object>>) request.getAttribute("ventasArriendos");
 %>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
 <%@ include file="/WEB-INF/jspf/menu.jspf" %>
@@ -51,6 +52,11 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Reportes</h2>
         <a href="<%= ctx %>/agente/dashboard_inmobiliaria.jsp" class="btn btn-outline-secondary btn-sm">&larr; Mi panel</a>
+    </div>
+
+    <div class="card shadow-sm border-danger mb-4">
+        <div class="card-header bg-white text-danger"><strong>Ventas y arriendos</strong></div>
+        <div class="card-body"><% renderTabla(out, ventasArriendos); %></div>
     </div>
 
     <div class="card shadow-sm mb-4">

@@ -169,4 +169,29 @@ public class ReporteDAO {
             return aMapas(rs);
         }
     }
+
+    // Reporte de ventas y arriendos por operación del inmueble
+    public List<Map<String, Object>> ventasArriendos(Integer idInmobiliaria) throws SQLException {
+        String sql = "SELECT CASE p.operacion WHEN 'VENTA' THEN 'Venta' ELSE 'Arriendo' END AS Operacion, "
+                   + "COUNT(*) AS Propiedades, "
+                   + "SUM(CASE WHEN p.estado = 'DISPONIBLE' THEN 1 ELSE 0 END) AS Disponibles, "
+                   + "SUM(CASE WHEN p.estado = 'VENDIDO' THEN 1 ELSE 0 END) AS Vendidas, "
+                   + "SUM(CASE WHEN p.estado = 'ARRENDADO' THEN 1 ELSE 0 END) AS Arrendadas, "
+                   + "COALESCE(SUM(p.precio), 0) AS Valor_Total "
+                   + "FROM propiedad p ";
+        if (idInmobiliaria != null && idInmobiliaria > 0) {
+            sql += "WHERE p.id_inmobiliaria = ? ";
+        }
+        sql += "GROUP BY p.operacion ORDER BY Operacion";
+
+        try (Connection con = ConexionBD.getConexion();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+            if (idInmobiliaria != null && idInmobiliaria > 0) {
+                ps.setInt(1, idInmobiliaria);
+            }
+            try (ResultSet rs = ps.executeQuery()) {
+                return aMapas(rs);
+            }
+        }
+    }
 }

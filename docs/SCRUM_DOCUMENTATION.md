@@ -103,7 +103,7 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 | H14 Auditoría | 2 |
 | **Suma** | **15** |
 
-**Tareas técnicas:** `AdminUsuarioServlet`, `AdminCatalogoServlet` (tipos, ciudades, características), `AuditoriaServlet`, `ReporteServlet` + `ReporteDAO`; pantallas `admin/usuarios.jsp`, `admin/catalogos.jsp`, `admin/auditoria.jsp`, `admin/reportes.jsp`, `agente/reportes.jsp`, `acceso_denegado.jsp`; auditoría en Login, Logout, citas, solicitudes, propiedades, usuarios, catálogos y perfil.
+**Tareas técnicas:** `AdminUsuarioServlet`, `AdminCatalogoServlet` (tipos, ciudades, características), `AuditoriaServlet`, `ReporteServlet` + `ReporteDAO`; pantallas `admin/usuarios.jsp`, `admin/catalogos.jsp`, `admin/auditoria.jsp`, `admin/reportes.jsp`, `agente/reportes.jsp`, `acceso_denegado.jsp`; auditoría en Login, Logout, citas, solicitudes, propiedades, usuarios, catálogos y perfil; seguridad de acceso (bloqueo temporal tras 5 intentos fallidos y recuperación de contraseña por correo con código de 6 dígitos); pruebas unitarias (`test/`): `PasswordUtilsTest` y `UsuarioTest` ejecutadas con `EjecutarPruebas` (ninguna requirió Tomcat) y validación de los hashes sembrados.
 
 **Sprint Review:** se mostró la consola administrativa completa: usuarios con roles e inmobiliaria, CRUD de catálogos, trazabilidad de auditoría y los 5+ reportes exigidos (JOIN multi-tabla, relación N:M, LEFT JOIN, GROUP BY/HAVING) en `admin` y `agente`.
 
@@ -124,12 +124,17 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 
 El equipo planificó el máximo (21), comprometió un total de 49 puntos en 3 sprints y los entregó en su totalidad (velocidad media ≈ 16,3 ptos/sprint).
 
+**Enlaces de seguimiento (en línea):**
+- Tablero de seguimiento: `[pegar aquí la URL de Tu/Trello/GitHub Projects]` *(pendiente: crear el tablero en línea y pegar el enlace)*
+- Repositorio Git público: `[pegar aquí la URL de GitHub]` *(pendiente: crear el repositorio público y pegarlo aquí)*
+
 ## 6. Entregables y aceptación
 
 | Criterio evaluativo | Estado |
 |---|---|
-| Base de datos (DDL/DML/consultas) | ✅ |
+| Base de datos (DDL/DML/consultas según entregable) | ✅ |
 | Modelo entidad-relación + relacional 3FN | ✅ |
+| Diagrama de casos de uso (`docs/imagenes/casos_de_uso.png`) | ✅ |
 | Autenticación, roles y control de acceso | ✅ |
 | Catálogo, ficha, favoritos, citas | ✅ |
 | Solicitudes con documentos | ✅ |

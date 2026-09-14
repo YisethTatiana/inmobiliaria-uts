@@ -24,13 +24,12 @@ public class FavoritoServlet extends HttpServlet {
 
         HttpSession session = request.getSession(false);
         Usuario usuario = (session != null) ? (Usuario) session.getAttribute("usuario") : null;
-        String rol = (session != null) ? (String) session.getAttribute("rol") : null;
 
         if (usuario == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
             return;
         }
-        if (!"CLIENTE".equalsIgnoreCase(rol)) {
+        if (!usuario.tieneRol("CLIENTE")) {
             response.sendRedirect(request.getContextPath() + "/acceso_denegado.jsp");
             return;
         }

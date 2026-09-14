@@ -93,6 +93,13 @@
                             <% } %>
                         </select>
                     </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Operaci&oacute;n *</label>
+                        <select name="operacion" class="form-select" required>
+                            <option value="VENTA">En venta</option>
+                            <option value="ARRIENDO">En arriendo</option>
+                        </select>
+                    </div>
                     <div class="col-12">
                         <label class="form-label">Fotograf&iacute;as (JPG, PNG, WEBP; varias permitidas)</label>
                         <input type="file" name="imagen" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" multiple>

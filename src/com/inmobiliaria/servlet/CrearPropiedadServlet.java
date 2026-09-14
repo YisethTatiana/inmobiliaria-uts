@@ -57,6 +57,7 @@ public class CrearPropiedadServlet extends HttpServlet {
         String idCiudadStr = request.getParameter("idCiudad");
         String idTipoStr = request.getParameter("idTipo");
         String matricula = request.getParameter("matricula");
+        String operacion = request.getParameter("operacion");
 
         if (titulo == null || titulo.trim().isEmpty()
                 || precioStr == null || precioStr.trim().isEmpty()
@@ -76,6 +77,7 @@ public class CrearPropiedadServlet extends HttpServlet {
         p.setIdTipo(Integer.parseInt(idTipoStr));
         p.setIdInmobiliaria(1);
         p.setEstado("DISPONIBLE");
+        p.setOperacion("ARRIENDO".equals(operacion) ? "ARRIENDO" : "VENTA");
         if (matricula != null && !matricula.trim().isEmpty()) {
             p.setMatriculaInmobiliaria(matricula.trim());
         } else {

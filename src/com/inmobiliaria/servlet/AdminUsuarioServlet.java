@@ -98,7 +98,7 @@ public class AdminUsuarioServlet extends HttpServlet {
                     return;
                 }
 
-                usuarioDAO.asignarRol(idUsuario, idRol);
+                usuarioDAO.anadirRol(idUsuario, idRol);
 
                 String nombreRol = obtenerNombreRol(idRol);
                 if ("INMOBILIARIA".equalsIgnoreCase(nombreRol)) {

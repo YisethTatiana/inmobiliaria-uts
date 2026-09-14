@@ -76,10 +76,13 @@
             <% for (Propiedad p : destacadas) { %>
                 <div class="col-md-6 col-lg-4">
                     <div class="card card-propiedad h-100 shadow-sm">
-                        <img src="<%= !p.getImagenPrincipal().isEmpty() ? p.getImagenPrincipal() : "https://picsum.photos/seed/default/" + p.getIdPropiedad() + "/800/500" %>"
+                        <img src="<%= !p.getImagenPrincipal().isEmpty() ? p.getImagenPrincipal() : "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&h=500&q=60" %>"
                              class="card-img-top" alt="<%= p.getTitulo() %>">
                         <div class="card-body d-flex flex-column">
-                            <h5 class="card-title"><%= p.getTitulo() %></h5>
+                            <div class="d-flex justify-content-between align-items-start">
+                                <h5 class="card-title"><%= p.getTitulo() %></h5>
+                                <span class="badge <%= "ARRIENDO".equals(p.getOperacion()) ? "bg-info text-dark" : "bg-primary" %>"><%= "ARRIENDO".equals(p.getOperacion()) ? "En arriendo" : "En venta" %></span>
+                            </div>
                             <p class="card-text text-muted small mb-1">
                                 <i class="bi bi-geo-alt"></i> <%= p.getNombreCiudad() %> &middot; <%= p.getNombreTipo() %>
                             </p>

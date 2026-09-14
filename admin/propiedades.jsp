@@ -23,6 +23,7 @@
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Gesti&oacute;n de Propiedades</h2>
         <div>
+            <a href="<%= ctx %>/admin/dashboard_admin.jsp" class="btn btn-outline-secondary btn-sm">&larr; Panel admin</a>
             <a href="<%= ctx %>/admin/crear_propiedad.jsp" class="btn btn-primary btn-sm">Crear Propiedad</a>
             <a href="<%= ctx %>/AdminPropiedadServlet" class="btn btn-outline-secondary btn-sm">Refrescar</a>
         </div>
@@ -55,6 +56,7 @@
                                 <th>Ciudad / Tipo</th>
                                 <th>Inmobiliaria</th>
                                 <th>Estado</th>
+                                <th>Operaci&oacute;n</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -66,7 +68,7 @@
                                     <td data-label="ID"><%= p.getIdPropiedad() %></td>
                                     <td data-label="Inmueble">
                                         <div class="d-flex align-items-center gap-2">
-                                            <img src="<%= !p.getImagenPrincipal().isEmpty() ? p.getImagenPrincipal() : "https://picsum.photos/seed/prop" + p.getIdPropiedad() + "/60/60" %>"
+                                            <img src="<%= !p.getImagenPrincipal().isEmpty() ? p.getImagenPrincipal() : "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=60&h=60&q=60" %>"
                                                  class="rounded" width="50" height="50" style="object-fit:cover;" alt="">
                                             <span><%= p.getTitulo() %><br>
                                                 <small class="text-muted"><%= p.getDireccion() != null ? p.getDireccion() : "" %></small>
@@ -77,6 +79,11 @@
                                     <td data-label="Ciudad/Tipo"><%= p.getNombreCiudad() %><br><small class="text-muted"><%= p.getNombreTipo() %></small></td>
                                     <td data-label="Inmobiliaria"><%= p.getNombreInmobiliaria() %></td>
                                     <td data-label="Estado"><span class="badge <%= badge %>"><%= p.getEstado() %></span></td>
+                                    <td data-label="Operación">
+                                        <span class="badge <%= "ARRIENDO".equals(p.getOperacion()) ? "bg-info text-dark" : "bg-primary" %>">
+                                            <%= "ARRIENDO".equals(p.getOperacion()) ? "En arriendo" : "En venta" %>
+                                        </span>
+                                    </td>
                                     <td data-label="Acciones" class="text-nowrap">
                                         <a href="<%= ctx %>/DetallePropiedadServlet?id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-info">Ficha</a>
                                         <a href="<%= ctx %>/EditarPropiedadServlet?id=<%= p.getIdPropiedad() %>" class="btn btn-sm btn-outline-primary">Editar</a>

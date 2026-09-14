@@ -166,6 +166,7 @@ public class AgentePropiedadServlet extends HttpServlet {
         String precioStr = request.getParameter("precio");
         String idCiudadStr = request.getParameter("idCiudad");
         String idTipoStr = request.getParameter("idTipo");
+        String operacion = request.getParameter("operacion");
 
         if (titulo == null || titulo.trim().isEmpty()
                 || precioStr == null || precioStr.trim().isEmpty()
@@ -200,6 +201,7 @@ public class AgentePropiedadServlet extends HttpServlet {
                 p.setBanios(parceInt(request.getParameter("banios")));
                 p.setParqueaderos(parceInt(request.getParameter("parqueaderos")));
                 p.setEstado("DISPONIBLE");
+                p.setOperacion(operacionValida(operacion));
 
                 int idPropiedad = propiedadDAO.insertar(p);
                 if (idPropiedad > 0) {
@@ -236,6 +238,7 @@ public class AgentePropiedadServlet extends HttpServlet {
                 p.setHabitaciones(parceInt(request.getParameter("habitaciones")));
                 p.setBanios(parceInt(request.getParameter("banios")));
                 p.setParqueaderos(parceInt(request.getParameter("parqueaderos")));
+                p.setOperacion(operacionValida(operacion));
 
                 propiedadDAO.actualizar(p);
 
@@ -284,6 +287,10 @@ public class AgentePropiedadServlet extends HttpServlet {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private String operacionValida(String operacion) {
+        return ("ARRIENDO".equals(operacion)) ? "ARRIENDO" : "VENTA";
     }
 
     private int parceInt(String valor) {

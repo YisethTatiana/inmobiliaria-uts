@@ -43,23 +43,9 @@
             </div></div>
         </div>
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-warning"><div class="card-body">
-                <h5 class="card-title text-warning">Citas</h5>
-                <p class="card-text small text-muted">Ver y actualizar el estado de las visitas.</p>
-                <a href="<%= ctx %>/AdminCitaServlet" class="btn btn-warning btn-sm">Gestionar</a>
-            </div></div>
-        </div>
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-primary"><div class="card-body">
-                <h5 class="card-title text-primary">Solicitudes</h5>
-                <p class="card-text small text-muted">Aprobar o rechazar tr&aacute;mites y documentos.</p>
-                <a href="<%= ctx %>/GestionSolicitudServlet" class="btn btn-outline-primary btn-sm">Gestionar</a>
-            </div></div>
-        </div>
-        <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm border-secondary"><div class="card-body">
                 <h5 class="card-title text-secondary">Reportes</h5>
-                <p class="card-text small text-muted">Consultas con JOIN, agrupaciones y ranking.</p>
+                <p class="card-text small text-muted">Indicadores, agrupaciones y ranking de la inmobiliaria.</p>
                 <a href="<%= ctx %>/ReporteServlet" class="btn btn-secondary btn-sm">Ver</a>
             </div></div>
         </div>

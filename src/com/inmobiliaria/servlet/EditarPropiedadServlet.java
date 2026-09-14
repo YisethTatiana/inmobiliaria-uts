@@ -100,6 +100,7 @@ public class EditarPropiedadServlet extends HttpServlet {
         String idCiudadStr = request.getParameter("idCiudad");
         String idTipoStr = request.getParameter("idTipo");
         String estado = request.getParameter("estado");
+        String operacion = request.getParameter("operacion");
 
         if (idParam == null || !idParam.matches("\\d+")
                 || titulo == null || titulo.trim().isEmpty()
@@ -120,6 +121,7 @@ public class EditarPropiedadServlet extends HttpServlet {
         p.setIdCiudad(Integer.parseInt(idCiudadStr));
         p.setIdTipo(Integer.parseInt(idTipoStr));
         p.setEstado(estado != null && !estado.isEmpty() ? estado : "DISPONIBLE");
+        p.setOperacion("ARRIENDO".equals(operacion) ? "ARRIENDO" : "VENTA");
 
         try {
             p.setPrecio(new BigDecimal(precioStr.trim()));

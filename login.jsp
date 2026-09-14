@@ -19,6 +19,9 @@
                     <% if ("exito".equals(request.getParameter("registro"))) { %>
                         <div class="alert alert-success">Cuenta creada correctamente. Inicia sesi&#243;n.</div>
                     <% } %>
+                    <% if ("1".equals(request.getParameter("clave"))) { %>
+                        <div class="alert alert-success">Contrase&#241;a restablecida correctamente. Ingresa con tu nueva clave.</div>
+                    <% } %>
 
                     <form action="<%= request.getContextPath() %>/LoginServlet" method="POST">
                         <div class="mb-3">
@@ -32,6 +35,9 @@
                         <button type="submit" class="btn btn-primary w-100">Ingresar</button>
                     </form>
                     <div class="mt-3 text-center">
+                        <a href="<%= request.getContextPath() %>/recuperar_clave.jsp">&#191;Olvidaste tu contrase&#241;a?</a>
+                    </div>
+                    <div class="mt-2 text-center">
                         <a href="<%= request.getContextPath() %>/registro.jsp">&#191;No tienes cuenta? Reg&#237;strate</a>
                     </div>
                 </div>

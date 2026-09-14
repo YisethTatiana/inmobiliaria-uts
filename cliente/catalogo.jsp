@@ -34,9 +34,16 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Cat&#225;logo de Inmuebles</h2>
-        <% if (cUsuario != null) { %>
-            <a href="<%= ctx %>/PerfilServlet" class="btn btn-secondary btn-sm">Mi Perfil</a>
-        <% } %>
+        <div class="d-flex gap-2">
+            <% if (cUsuario != null) { %>
+                <% if (cUsuario.tieneRol("ADMINISTRADOR")) { %>
+                    <a href="<%= ctx %>/admin/dashboard_admin.jsp" class="btn btn-outline-secondary btn-sm">&larr; Panel admin</a>
+                <% } else if (cUsuario.tieneRol("INMOBILIARIA")) { %>
+                    <a href="<%= ctx %>/agente/dashboard_inmobiliaria.jsp" class="btn btn-outline-secondary btn-sm">&larr; Panel agente</a>
+                <% } %>
+                <a href="<%= ctx %>/PerfilServlet" class="btn btn-secondary btn-sm">Mi Perfil</a>
+            <% } %>
+        </div>
     </div>
 
     <div class="card shadow-sm mb-4">
@@ -99,11 +106,14 @@
                     <img class="card-img-top" alt="<%= p.getTitulo() %>"
                          src="<%= !p.getImagenPrincipal().isEmpty()
                                 ? p.getImagenPrincipal()
-                                : "https://picsum.photos/seed/prop" + p.getIdPropiedad() + "/800/500" %>">
+                                : "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&h=500&q=60" %>">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-start">
                             <h5 class="card-title mb-1"><%= p.getTitulo() %></h5>
-                            <span class="badge bg-<%= "DISPONIBLE".equals(p.getEstado()) ? "success" : "secondary" %>"><%= p.getEstado() %></span>
+                            <div class="d-flex flex-column align-items-end gap-1">
+                                <span class="badge <%= "ARRIENDO".equals(p.getOperacion()) ? "bg-info text-dark" : "bg-primary" %>"><%= "ARRIENDO".equals(p.getOperacion()) ? "En arriendo" : "En venta" %></span>
+                                <span class="badge bg-<%= "DISPONIBLE".equals(p.getEstado()) ? "success" : "secondary" %>"><%= p.getEstado() %></span>
+                            </div>
                         </div>
                         <p class="text-muted small mb-1">
                             <%= p.getNombreCiudad() %> &middot; <%= p.getNombreTipo() %>

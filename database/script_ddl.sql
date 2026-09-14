@@ -80,11 +80,15 @@ CREATE TABLE inmobiliaria (
 -- ------------------------------------------------------------
 
 CREATE TABLE usuario (
-    id_usuario    INT NOT NULL AUTO_INCREMENT,
-    correo        VARCHAR(150) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    activo        TINYINT(1) NOT NULL DEFAULT 1,
-    fecha_creacion TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    id_usuario          INT NOT NULL AUTO_INCREMENT,
+    correo              VARCHAR(150) NOT NULL,
+    password_hash       VARCHAR(255) NOT NULL,
+    activo              TINYINT(1) NOT NULL DEFAULT 1,
+    intentos_fallidos   INT NOT NULL DEFAULT 0,
+    bloqueado_hasta     DATETIME NULL,
+    token_recuperacion  VARCHAR(64) NULL,
+    token_expiracion    DATETIME NULL,
+    fecha_creacion      TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id_usuario),
     CONSTRAINT uq_usuario_correo UNIQUE (correo)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -161,6 +165,7 @@ CREATE TABLE propiedad (
     banios                INT          NULL,
     parqueaderos          INT          NULL,
     estado                ENUM('DISPONIBLE','INACTIVO','VENDIDO','ARRENDADO','RESERVADO') NOT NULL DEFAULT 'DISPONIBLE',
+    operacion             ENUM('VENTA','ARRIENDO') NOT NULL DEFAULT 'VENTA',
     fecha_publicacion     TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     id_ciudad             INT NOT NULL,
     id_tipo               INT NOT NULL,

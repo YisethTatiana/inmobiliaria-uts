@@ -9,9 +9,9 @@ Las 5 consultas exigidas están en `database/consultas.sql`.
 
 ## 1. Modelo Entidad-Relación (MER)
 
-**Diagrama (imagen):** `imagenes/MER.png` — 17 entidades y las relaciones 1:1, 1:N y N:M (filas de relación marcadas con diamante).
+**Diagrama (imagen):** `imagenes/MER.png` — 17 entidades y las relaciones 1:1, 1:N y N:M. Estilo del diagrama: cada relación se dibuja como una línea ortogonal (no cruza tablas) con un **número** en un círculo en su punto medio; las relaciones N:M resueltas por tabla puente se marcan con un **diamante** con número. Debajo del diagrama hay una **leyenda** que lista cada relación con su cardinalidad y su columna FK (ej. `7. ciudad -> propiedad (1:N) · propiedad.id_ciudad`).
 
-**Diagrama del esquema relacional (tablas y claves):** `imagenes/modelo_relacional.png`.
+**Diagrama del esquema relacional (tablas y claves):** `imagenes/modelo_relacional.png` — mismas tablas y conexiones numeradas (sin diamantes, todas como tablas físicas).
 
 ```
 ROL *----------------+ * USUARIO      USUARIO 1---------0..1 PERFIL
@@ -96,7 +96,26 @@ Todas las tablas cumplen 3FN (sin dependencias transitivas; las dependencias par
 - Passwords de prueba (formato `SHA256(salt+clave)` codificado en Base64, separado por `:`):
   - `admin123`  → `eBsYNqFXdwobDSUNwxibetS1yq4o0P3/IHShZrvYC3s=:xuQYqfgMLSGoISZGmFM+vg==`
   - `agente123` → `s6P+4lQksbPZdYxBbKb/+bhTNGckidTNUnU+OzMujlk=:SO03E7AAY7d3mFG3cxdH7A==`
-- Las cuentas CLIENTE no se siembran en el DML; se crean desde el registro público
-  (`registro.jsp`).
+- Solo se siembran 2 cuentas: **ADMINISTRADOR** y **INMOBILIARIA (agente1)**.
+  Las cuentas **CLIENTE** se crean desde "Registrarse" (registro público bajo
+  demanda); por eso las tablas que dependen de un cliente (cita, solicitud,
+  documento_solicitud, favorito) quedan vacías hasta que exista un cliente.
+- Seguridad de acceso:
+  - **Bloqueo temporal:** tras `MAX_INTENTOS` (5) fallos de contraseña la
+    cuenta se bloquea durante `MINUTOS_BLOQUEO` (15) minutos
+    (columnas `intentos_fallidos` y `bloqueado_hasta`), con registro en
+    auditoría (`LOGIN_FALLIDO`, `LOGIN_BLOQUEADO`).
+  - **Recuperación por correo:** `/recuperar_clave.jsp` genera un **código de
+    6 dígitos** (hash SHA-256, vigencia `MINUTOS_VIGENCIA` = 15 min) almacenado
+    en `token_recuperacion` / `token_expiracion`; el código se envía por SMTP
+    vía **Mailjet** (remitente verificado, configurado en
+    `WEB-INF/classes/smtp.properties`, protegido por `.gitignore`) y una vez
+    digitado correctamente permite fijar la nueva clave.
+- `propiedad.operacion` (`ENUM('VENTA','ARRIENDO')`): indica si el inmueble se
+  vende o se arrienda; se muestra en las tarjetas del catálogo, favoritos,
+  ficha e inventarios, y alimenta el reporte "Ventas y arriendos"
+  (`ReporteDAO.ventasArriendos`).
 - Fechas: `yyyy-MM-dd HH:mm:ss` (MySQL `DATETIME`/`TIMESTAMP`).
 - Moneda: `DECIMAL(14,2)`, formateo `#,###.##` en las vistas.
+- Imágenes de propiedades: fotografías reales de inmuebles (Unsplash) acordes
+  al tipo de propiedad (casa, apartamento, local, oficina, terreno).

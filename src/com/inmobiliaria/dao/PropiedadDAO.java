@@ -17,7 +17,7 @@ public class PropiedadDAO {
 
     private static final String CAMPOS = "p.id_propiedad, p.matricula_inmobiliaria, p.titulo, p.descripcion, "
             + "p.precio, p.direccion, p.area, p.habitaciones, p.banios, p.parqueaderos, "
-            + "p.estado, p.fecha_publicacion, p.id_ciudad, p.id_tipo, p.id_inmobiliaria, "
+            + "p.estado, p.fecha_publicacion, p.id_ciudad, p.id_tipo, p.id_inmobiliaria, p.operacion, "
             + "ci.nombre AS nombre_ciudad, tp.nombre AS nombre_tipo, i.nombre AS nombre_inmobiliaria, "
             + "i.telefono AS telefono_inmobiliaria, i.correo_contacto AS email_inmobiliaria ";
 
@@ -157,8 +157,8 @@ public class PropiedadDAO {
 
     public int insertar(Propiedad p) throws SQLException {
         String sql = "INSERT INTO propiedad (matricula_inmobiliaria, titulo, descripcion, precio, direccion, "
-                   + "area, habitaciones, banios, parqueaderos, estado, id_ciudad, id_tipo, id_inmobiliaria) "
-                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                   + "area, habitaciones, banios, parqueaderos, estado, operacion, id_ciudad, id_tipo, id_inmobiliaria) "
+                   + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -173,9 +173,10 @@ public class PropiedadDAO {
             ps.setObject(8, p.getBanios() == 0 ? null : p.getBanios());
             ps.setObject(9, p.getParqueaderos() == 0 ? null : p.getParqueaderos());
             ps.setString(10, p.getEstado() == null ? "DISPONIBLE" : p.getEstado());
-            ps.setInt(11, p.getIdCiudad());
-            ps.setInt(12, p.getIdTipo());
-            ps.setInt(13, p.getIdInmobiliaria());
+            ps.setString(11, p.getOperacion() == null ? "VENTA" : p.getOperacion());
+            ps.setInt(12, p.getIdCiudad());
+            ps.setInt(13, p.getIdTipo());
+            ps.setInt(14, p.getIdInmobiliaria());
 
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
@@ -189,7 +190,7 @@ public class PropiedadDAO {
     public boolean actualizar(Propiedad p) throws SQLException {
         String sql = "UPDATE propiedad SET titulo = ?, descripcion = ?, precio = ?, direccion = ?, "
                    + "area = ?, habitaciones = ?, banios = ?, parqueaderos = ?, estado = ?, "
-                   + "id_ciudad = ?, id_tipo = ? WHERE id_propiedad = ?";
+                   + "operacion = ?, id_ciudad = ?, id_tipo = ? WHERE id_propiedad = ?";
 
         try (Connection con = ConexionBD.getConexion();
              PreparedStatement ps = con.prepareStatement(sql)) {
@@ -203,9 +204,10 @@ public class PropiedadDAO {
             ps.setObject(7, p.getBanios() == 0 ? null : p.getBanios());
             ps.setObject(8, p.getParqueaderos() == 0 ? null : p.getParqueaderos());
             ps.setString(9, p.getEstado());
-            ps.setInt(10, p.getIdCiudad());
-            ps.setInt(11, p.getIdTipo());
-            ps.setInt(12, p.getIdPropiedad());
+            ps.setString(10, p.getOperacion() == null ? "VENTA" : p.getOperacion());
+            ps.setInt(11, p.getIdCiudad());
+            ps.setInt(12, p.getIdTipo());
+            ps.setInt(13, p.getIdPropiedad());
 
             return ps.executeUpdate() > 0;
         }
@@ -319,6 +321,7 @@ public class PropiedadDAO {
         p.setBanios(rs.getInt("banios"));
         p.setParqueaderos(rs.getInt("parqueaderos"));
         p.setEstado(rs.getString("estado"));
+        p.setOperacion(rs.getString("operacion"));
         p.setIdCiudad(rs.getInt("id_ciudad"));
         p.setIdTipo(rs.getInt("id_tipo"));
         p.setIdInmobiliaria(rs.getInt("id_inmobiliaria"));

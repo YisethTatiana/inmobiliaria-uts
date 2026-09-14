@@ -41,13 +41,6 @@
             </div></div>
         </div>
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-warning"><div class="card-body">
-                <h5 class="card-title text-warning">Citas</h5>
-                <p class="card-text small text-muted">Confirmar o cancelar visitas de tus propiedades.</p>
-                <a href="<%= ctx %>/AgenteCitaServlet" class="btn btn-warning btn-sm">Gestionar</a>
-            </div></div>
-        </div>
-        <div class="col-md-6 col-lg-4">
             <div class="card h-100 shadow-sm border-info"><div class="card-body">
                 <h5 class="card-title text-info">Solicitudes</h5>
                 <p class="card-text small text-muted">Aprobar o rechazar tr&aacute;mites de clientes.</p>
@@ -55,10 +48,17 @@
             </div></div>
         </div>
         <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm border-secondary"><div class="card-body">
-                <h5 class="card-title text-secondary">Reportes</h5>
-                <p class="card-text small text-muted">Consultas y estad&iacute;sticas de tus propiedades.</p>
-                <a href="<%= ctx %>/ReporteServlet" class="btn btn-secondary btn-sm">Ver</a>
+            <div class="card h-100 shadow-sm border-danger"><div class="card-body">
+                <h5 class="card-title text-danger">Reportes de ventas y arriendos</h5>
+                <p class="card-text small text-muted">Reportes de ventas, arriendos y citas.</p>
+                <a href="<%= ctx %>/ReporteServlet" class="btn btn-danger btn-sm">Generar reportes</a>
+            </div></div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-warning"><div class="card-body">
+                <h5 class="card-title text-warning">Citas</h5>
+                <p class="card-text small text-muted">Confirmar o cancelar visitas de tus propiedades.</p>
+                <a href="<%= ctx %>/AgenteCitaServlet" class="btn btn-warning btn-sm">Gestionar</a>
             </div></div>
         </div>
         <div class="col-md-6 col-lg-4">

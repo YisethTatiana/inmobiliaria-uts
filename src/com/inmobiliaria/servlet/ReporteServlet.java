@@ -1,6 +1,7 @@
 package com.inmobiliaria.servlet;
 
 import com.inmobiliaria.dao.ReporteDAO;
+import com.inmobiliaria.dao.UsuarioDAO;
 import com.inmobiliaria.modelo.Usuario;
 
 import java.io.IOException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpSession;
 public class ReporteServlet extends HttpServlet {
 
     private ReporteDAO reporteDAO = new ReporteDAO();
+    private UsuarioDAO usuarioDAO = new UsuarioDAO();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,6 +48,16 @@ public class ReporteServlet extends HttpServlet {
             List<Map<String, Object>> citasPorEstado = reporteDAO.citasPorEstado();
             List<Map<String, Object>> caracteristicas = reporteDAO.caracteristicasDePropiedad(1);
 
+            Integer idInmobiliaria = null;
+            if (esAgente) {
+                try {
+                    idInmobiliaria = usuarioDAO.obtenerInmobiliaria(usuario.getIdUsuario());
+                } catch (Exception e) {
+                    idInmobiliaria = null;
+                }
+            }
+            List<Map<String, Object>> ventasArriendos = reporteDAO.ventasArriendos(idInmobiliaria);
+
             request.setAttribute("citas", citas);
             request.setAttribute("usuarios", usuarios);
             request.setAttribute("propiedades", propiedades);
@@ -54,6 +66,7 @@ public class ReporteServlet extends HttpServlet {
             request.setAttribute("solicitudesInmobiliaria", solicitudesPorInmobiliaria);
             request.setAttribute("citasPorEstado", citasPorEstado);
             request.setAttribute("caracteristicasDePropiedad", caracteristicas);
+            request.setAttribute("ventasArriendos", ventasArriendos);
 
             if (esAgente) {
                 request.getRequestDispatcher("/agente/reportes.jsp").forward(request, response);

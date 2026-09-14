@@ -112,6 +112,13 @@
                             <% } %>
                         </select>
                     </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Operaci&oacute;n *</label>
+                        <select name="operacion" class="form-select" required>
+                            <option value="VENTA" <%= "VENTA".equals(prop.getOperacion()) ? "selected" : "" %>>En venta</option>
+                            <option value="ARRIENDO" <%= "ARRIENDO".equals(prop.getOperacion()) ? "selected" : "" %>>En arriendo</option>
+                        </select>
+                    </div>
                     <div class="col-12">
                         <label class="form-label">Nuevas fotograf&iacute;as (opcional; reemplazan las actuales)</label>
                         <input type="file" name="imagen" class="form-control" accept=".jpg,.jpeg,.png,.gif,.webp" multiple>

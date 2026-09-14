@@ -14,6 +14,7 @@
         return;
     }
     boolean puedeAgendar = (u != null && u.tieneRol("CLIENTE"));
+    boolean veContacto = (u != null);
 %>
 <%@ include file="/WEB-INF/jspf/head.jspf" %>
 <%@ include file="/WEB-INF/jspf/menu.jspf" %>
@@ -29,6 +30,10 @@
         <div class="alert alert-success">Favorito actualizado.</div>
     <% } %>
 
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <a href="javascript:history.back()" class="btn btn-outline-secondary btn-sm">&larr; Volver</a>
+        <a href="<%= ctx %>/PropiedadServlet" class="btn btn-outline-primary btn-sm">Ver cat&aacute;logo</a>
+    </div>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="<%= ctx %>/PropiedadServlet">Cat&#225;logo</a></li>
@@ -41,7 +46,7 @@
             <div class="row g-4">
                 <div class="col-lg-7">
                     <img id="imagenPrincipal" class="img-detalle-principal w-100"
-                         src="<%= !p.getImagenPrincipal().isEmpty() ? p.getImagenPrincipal() : "https://picsum.photos/seed/prop" + p.getIdPropiedad() + "/1200/700" %>"
+                         src="<%= !p.getImagenPrincipal().isEmpty() ? p.getImagenPrincipal() : "https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&h=700&q=60" %>"
                          alt="<%= p.getTitulo() %>">
                     <div class="d-flex gap-2 mt-2 mt-3">
                         <% int imgCount = 0;
@@ -56,7 +61,10 @@
                 <div class="col-lg-5 d-flex flex-column">
                     <div class="d-flex justify-content-between align-items-start">
                         <h2 class="mb-1"><%= p.getTitulo() %></h2>
-                        <span class="badge bg-<%= "DISPONIBLE".equals(p.getEstado()) ? "success" : "secondary" %> estado-badge"><%= p.getEstado() %></span>
+                        <div class="d-flex flex-column align-items-end gap-1">
+                            <span class="badge <%= "ARRIENDO".equals(p.getOperacion()) ? "bg-info text-dark" : "bg-primary" %>"><%= "ARRIENDO".equals(p.getOperacion()) ? "En arriendo" : "En venta" %></span>
+                            <span class="badge bg-<%= "DISPONIBLE".equals(p.getEstado()) ? "success" : "secondary" %> estado-badge"><%= p.getEstado() %></span>
+                        </div>
                     </div>
                     <p class="text-muted mb-2">
                         <%= p.getNombreCiudad() %> &middot; <%= p.getNombreTipo() %><br>
@@ -90,11 +98,15 @@
                     <h6>Inmobiliaria gestora</h6>
                     <p class="mb-1">
                         <strong><i class="bi bi-building"></i> <%= p.getNombreInmobiliaria() %></strong><br>
-                        <% if (p.getTelefonoInmobiliaria() != null && !p.getTelefonoInmobiliaria().isEmpty()) { %>
-                            <small><i class="bi bi-telephone"></i> <%= p.getTelefonoInmobiliaria() %></small><br>
-                        <% } %>
-                        <% if (p.getEmailInmobiliaria() != null && !p.getEmailInmobiliaria().isEmpty()) { %>
-                            <small><i class="bi bi-envelope"></i> <%= p.getEmailInmobiliaria() %></small>
+                        <% if (veContacto) { %>
+                            <% if (p.getTelefonoInmobiliaria() != null && !p.getTelefonoInmobiliaria().isEmpty()) { %>
+                                <small><i class="bi bi-telephone"></i> <%= p.getTelefonoInmobiliaria() %></small><br>
+                            <% } %>
+                            <% if (p.getEmailInmobiliaria() != null && !p.getEmailInmobiliaria().isEmpty()) { %>
+                                <small><i class="bi bi-envelope"></i> <%= p.getEmailInmobiliaria() %></small>
+                            <% } %>
+                        <% } else { %>
+                            <small class="text-muted">Inicia sesi&#243;n para ver los datos de contacto completos.</small>
                         <% } %>
                     </p>
 

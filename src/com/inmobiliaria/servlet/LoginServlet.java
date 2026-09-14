@@ -2,6 +2,7 @@ package com.inmobiliaria.servlet;
 
 import com.inmobiliaria.dao.AuditoriaDAO;
 import com.inmobiliaria.dao.UsuarioDAO;
+import com.inmobiliaria.modelo.ResultadoLogin;
 import com.inmobiliaria.modelo.Usuario;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,12 +26,16 @@ public class LoginServlet extends HttpServlet {
 
         String correo = request.getParameter("correo");
         String password = request.getParameter("password");
+        String ip = request.getRemoteAddr();
 
         try {
-            Usuario usuario = usuarioDAO.autenticar(correo, password);
+            ResultadoLogin resultado = usuarioDAO.autenticarConBloqueo(correo, password);
 
-            if (usuario != null) {
+            if (resultado.getEstado() == ResultadoLogin.OK) {
+                Usuario usuario = resultado.getUsuario();
                 if (!usuario.isActivo()) {
+                    auditoriaDAO.registrar(usuario.getIdUsuario(), "LOGIN_INACTIVA", "USUARIO",
+                            usuario.getIdUsuario(), "Intento de ingreso con cuenta inactiva: " + correo, ip);
                     request.setAttribute("error", "Su cuenta se encuentra inactiva.");
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                     return;
@@ -45,11 +50,25 @@ public class LoginServlet extends HttpServlet {
                 }
 
                 auditoriaDAO.registrar(usuario.getIdUsuario(), "LOGIN", "USUARIO",
-                        usuario.getIdUsuario(), "Inicio de sesión", request.getRemoteAddr());
+                        usuario.getIdUsuario(), "Inicio de sesión", ip);
 
                 response.sendRedirect(request.getContextPath() + usuario.getPanelSegunRol());
+            } else if (resultado.getEstado() == ResultadoLogin.BLOQUEADO) {
+                int idUsuario = usuarioDAO.buscarIdPorCorreo(correo);
+                auditoriaDAO.registrar(idUsuario > 0 ? idUsuario : null, "LOGIN_BLOQUEADO", "USUARIO",
+                        idUsuario > 0 ? idUsuario : null,
+                        "Cuenta bloqueada temporalmente por intentos fallidos: " + correo, ip);
+                request.setAttribute("error", "Cuenta bloqueada temporalmente por intentos fallidos. "
+                        + "Intente nuevamente en " + resultado.getMinutosRestantes() + " minuto(s).");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
-                request.setAttribute("error", "Credenciales incorrectas.");
+                int idUsuario = usuarioDAO.buscarIdPorCorreo(correo);
+                auditoriaDAO.registrar(idUsuario > 0 ? idUsuario : null, "LOGIN_FALLIDO", "USUARIO",
+                        idUsuario > 0 ? idUsuario : null,
+                        "Intento de inicio de sesión fallido: " + correo, ip);
+                request.setAttribute("error", "Credenciales incorrectas. Despu\u00e9s de "
+                        + UsuarioDAO.MAX_INTENTOS + " intentos fallidos la cuenta se bloquea por "
+                        + UsuarioDAO.MINUTOS_BLOQUEO + " minutos.");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
         } catch (SQLException e) {
