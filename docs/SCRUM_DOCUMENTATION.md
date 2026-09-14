@@ -126,7 +126,7 @@ El equipo planificó el máximo (21), comprometió un total de 49 puntos en 3 sp
 
 **Enlaces de seguimiento (en línea):**
 - Tablero de seguimiento: `[pegar aquí la URL de Tu/Trello/GitHub Projects]` *(pendiente: crear el tablero en línea y pegar el enlace)*
-- Repositorio Git público: `[pegar aquí la URL de GitHub]` *(pendiente: crear el repositorio público y pegarlo aquí)*
+- Repositorio Git público: `https://github.com/YisethTatiana/inmobiliaria-uts` *(creado y subido)*
 
 ## 6. Entregables y aceptación
 
