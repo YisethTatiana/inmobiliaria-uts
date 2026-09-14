@@ -52,6 +52,7 @@
                             <tr>
                                 <th>#</th>
                                 <th>Inmueble</th>
+                                <th>Matr&iacute;cula</th>
                                 <th>Precio</th>
                                 <th>Ciudad / Tipo</th>
                                 <th>Inmobiliaria</th>
@@ -75,6 +76,7 @@
                                             </span>
                                         </div>
                                     </td>
+                                    <td data-label="Matrícula"><%= p.getMatriculaInmobiliaria() != null ? p.getMatriculaInmobiliaria() : "-" %></td>
                                     <td data-label="Precio">$ <%= String.format("%,.0f", p.getPrecio()) %></td>
                                     <td data-label="Ciudad/Tipo"><%= p.getNombreCiudad() %><br><small class="text-muted"><%= p.getNombreTipo() %></small></td>
                                     <td data-label="Inmobiliaria"><%= p.getNombreInmobiliaria() %></td>
