@@ -2,7 +2,6 @@ package com.inmobiliaria.servlet;
 
 import com.inmobiliaria.dao.AuditoriaDAO;
 import com.inmobiliaria.dao.CitaDAO;
-import com.inmobiliaria.dao.UsuarioDAO;
 import com.inmobiliaria.modelo.Cita;
 import com.inmobiliaria.modelo.Usuario;
 
@@ -19,48 +18,34 @@ import javax.servlet.http.HttpSession;
 public class AgenteCitaServlet extends HttpServlet {
 
     private CitaDAO citaDAO = new CitaDAO();
-    private UsuarioDAO usuarioDAO = new UsuarioDAO();
     private AuditoriaDAO auditoriaDAO = new AuditoriaDAO();
 
-    private int idInmobiliariaValida(HttpServletRequest request, HttpServletResponse response)
+    private boolean accesoValido(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
         HttpSession session = request.getSession(false);
         Usuario usuario = (session != null) ? (Usuario) session.getAttribute("usuario") : null;
 
         if (usuario == null) {
             response.sendRedirect(request.getContextPath() + "/login.jsp");
-            return -1;
+            return false;
         }
         if (!usuario.tieneRol("INMOBILIARIA") && !usuario.tieneRol("ADMINISTRADOR")) {
             response.sendRedirect(request.getContextPath() + "/acceso_denegado.jsp");
-            return -1;
+            return false;
         }
-
-        try {
-            int idInmobiliaria = usuarioDAO.obtenerInmobiliaria(usuario.getIdUsuario());
-            if (idInmobiliaria <= 0) {
-                response.sendRedirect(request.getContextPath() + "/agente/dashboard_inmobiliaria.jsp?sinInmobiliaria=true");
-                return -1;
-            }
-            return idInmobiliaria;
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/index.jsp");
-            return -1;
-        }
+        return true;
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int idInmobiliaria = idInmobiliariaValida(request, response);
-        if (idInmobiliaria <= -1) {
+        if (!accesoValido(request, response)) {
             return;
         }
 
         try {
-            List<Cita> citas = citaDAO.listarPorInmobiliariaConDetalles(idInmobiliaria);
+            List<Cita> citas = citaDAO.listarTodasConDetalles();
             request.setAttribute("citas", citas);
             request.getRequestDispatcher("/agente/citas.jsp").forward(request, response);
         } catch (Exception e) {
@@ -73,8 +58,7 @@ public class AgenteCitaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        int idInmobiliaria = idInmobiliariaValida(request, response);
-        if (idInmobiliaria <= -1) {
+        if (!accesoValido(request, response)) {
             return;
         }
 
@@ -82,8 +66,7 @@ public class AgenteCitaServlet extends HttpServlet {
             int idCita = Integer.parseInt(request.getParameter("idCita"));
             String estado = request.getParameter("estado");
 
-            if (citaDAO.perteneceAInmobiliaria(idCita, idInmobiliaria)
-                    && citaDAO.actualizarEstado(idCita, estado)) {
+            if (citaDAO.actualizarEstado(idCita, estado)) {
                 Usuario usuario = (Usuario) request.getSession(false).getAttribute("usuario");
                 auditoriaDAO.registrar(usuario.getIdUsuario(), "ESTADO", "CITA", idCita,
                         "Cambió la cita #" + idCita + " a " + estado, request.getRemoteAddr());
