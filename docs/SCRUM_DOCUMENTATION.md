@@ -116,6 +116,8 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 
 **Tablero Scrum (imagen):** `imagenes/tablero_scrum.png` — columnas Pendiente / En Progreso / Hecho por sprint, con las historias H1–H15 y su estimación en puntos.
 
+![Tablero Scrum](imagenes/tablero_scrum.png)
+
 | Sprint | Puntos planificados | Puntos comprometidos | Puntos entregados | Días |
 |---|---|---|---|---|
 | Sprint 1 | 21 | 14 | 14 | 7 |
@@ -143,3 +145,7 @@ El equipo planificó el máximo (21), comprometió un total de 49 puntos en 3 sp
 | Vistas responsivas y fragmentos JSPF compartidos | ✅ |
 | Código compilado y documentación | ✅ |
 | Control de versiones (Git) | ✅ |
+
+**Diagrama de casos de uso (imagen):**
+
+![Diagrama de casos de uso](imagenes/casos_de_uso.png)

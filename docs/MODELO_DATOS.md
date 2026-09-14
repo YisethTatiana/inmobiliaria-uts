@@ -11,7 +11,11 @@ Las 5 consultas exigidas están en `database/consultas.sql`.
 
 **Diagrama (imagen):** `imagenes/MER.png` — 17 entidades y las relaciones 1:1, 1:N y N:M. Estilo del diagrama: cada relación se dibuja como una línea ortogonal (no cruza tablas) con un **número** en un círculo en su punto medio; las relaciones N:M resueltas por tabla puente se marcan con un **diamante** con número. Debajo del diagrama hay una **leyenda** que lista cada relación con su cardinalidad y su columna FK (ej. `7. ciudad -> propiedad (1:N) · propiedad.id_ciudad`).
 
+![Modelo entidad-relación (MER)](imagenes/MER.png)
+
 **Diagrama del esquema relacional (tablas y claves):** `imagenes/modelo_relacional.png` — mismas tablas y conexiones numeradas (sin diamantes, todas como tablas físicas).
+
+![Modelo relacional](imagenes/modelo_relacional.png)
 
 ```
 ROL *----------------+ * USUARIO      USUARIO 1---------0..1 PERFIL
