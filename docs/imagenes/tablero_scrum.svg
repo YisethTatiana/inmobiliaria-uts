@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 962" font-family="Segoe UI, Arial, Helvetica, sans-serif">
+  <rect x="0" y="0" width="1280" height="962" fill="#f8f9fa"/>
+
+  <!-- Titulo -->
+  <text x="40" y="30" font-size="26" font-weight="bold" fill="#212529">Tablero Scrum — Proyecto Inmobiliaria UTS</text>
+  <text x="40" y="58" font-size="15" fill="#495057">Sprints de 7 días &nbsp;&middot;&nbsp; Historias H1&ndash;H15 &nbsp;&middot;&nbsp; Estimaci&oacute;n en puntos de historia (Fibonacci: 1, 2, 3, 5, 8) &nbsp;&middot;&nbsp; Estado al cierre de cada sprint (cumplimiento 100%)</text>
+
+  <!-- SPRINT 1 -->
+  <rect x="40" y="88" width="1200" height="30" rx="4" fill="#212529"/>
+  <text x="56" y="103" font-size="16" font-weight="bold" fill="#ffffff">Sprint 1 &mdash; Cimientos &nbsp;&middot;&nbsp; 14 puntos &nbsp;&middot;&nbsp; 5 historias</text>
+  <rect x="210" y="120" width="330" height="18" fill="#e9ecef"/><text x="220" y="133" font-size="12" font-weight="bold" fill="#495057">PENDIENTE &middot; 0 pt</text>
+  <rect x="552" y="120" width="330" height="18" fill="#cfe2ff"/><text x="562" y="133" font-size="12" font-weight="bold" fill="#084298">EN PROGRESO &middot; 0 pt</text>
+  <rect x="894" y="120" width="330" height="18" fill="#d1e7dd"/><text x="904" y="133" font-size="12" font-weight="bold" fill="#0f5132">HECHO &middot; 14 pt</text>
+  <!-- H15 -->
+  <rect x="894" y="148" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="169" font-size="13" font-weight="bold" fill="#212529">H15</text>
+  <text x="944" y="169" font-size="12.5" fill="#495057">Cerrar sesión de forma segura</text>
+  <circle cx="1204" cy="165" r="10" fill="#198754"/><text x="1204" y="169" font-size="12" fill="#ffffff" text-anchor="middle">1</text>
+  <!-- H7 -->
+  <rect x="894" y="190" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="211" font-size="13" font-weight="bold" fill="#212529">H7</text>
+  <text x="944" y="211" font-size="12.5" fill="#495057">Editar perfil personal</text>
+  <circle cx="1204" cy="207" r="10" fill="#198754"/><text x="1204" y="211" font-size="12" fill="#ffffff" text-anchor="middle">2</text>
+  <!-- H3 -->
+  <rect x="894" y="232" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="253" font-size="13" font-weight="bold" fill="#212529">H3</text>
+  <text x="944" y="253" font-size="12.5" fill="#495057">Ficha de propiedad con imágenes y características</text>
+  <circle cx="1204" cy="249" r="10" fill="#198754"/><text x="1204" y="253" font-size="12" fill="#ffffff" text-anchor="middle">3</text>
+  <!-- H1 -->
+  <rect x="894" y="274" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="295" font-size="13" font-weight="bold" fill="#212529">H1</text>
+  <text x="944" y="295" font-size="12.5" fill="#495057">Catálogo de propiedades y filtros</text>
+  <circle cx="1204" cy="291" r="10" fill="#198754"/><text x="1204" y="295" font-size="12" fill="#ffffff" text-anchor="middle">3</text>
+  <!-- H2 -->
+  <rect x="894" y="316" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="337" font-size="13" font-weight="bold" fill="#212529">H2</text>
+  <text x="944" y="337" font-size="12.5" fill="#495057">Registro, autenticación y roles</text>
+  <circle cx="1204" cy="333" r="10" fill="#198754"/><text x="1204" y="337" font-size="12" fill="#ffffff" text-anchor="middle">5</text>
+
+  <!-- SPRINT 2 -->
+  <rect x="40" y="372" width="1200" height="30" rx="4" fill="#212529"/>
+  <text x="56" y="387" font-size="16" font-weight="bold" fill="#ffffff">Sprint 2 &mdash; Negocio del cliente e inmobiliaria &nbsp;&middot;&nbsp; 20 puntos &nbsp;&middot;&nbsp; 5 historias</text>
+  <rect x="210" y="404" width="330" height="18" fill="#e9ecef"/><text x="220" y="417" font-size="12" font-weight="bold" fill="#495057">PENDIENTE &middot; 0 pt</text>
+  <rect x="552" y="404" width="330" height="18" fill="#cfe2ff"/><text x="562" y="417" font-size="12" font-weight="bold" fill="#084298">EN PROGRESO &middot; 0 pt</text>
+  <rect x="894" y="404" width="330" height="18" fill="#d1e7dd"/><text x="904" y="417" font-size="12" font-weight="bold" fill="#0f5132">HECHO &middot; 20 pt</text>
+  <!-- H5 -->
+  <rect x="894" y="432" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="453" font-size="13" font-weight="bold" fill="#212529">H5</text>
+  <text x="944" y="453" font-size="12.5" fill="#495057">Guardar propiedades favoritas</text>
+  <circle cx="1204" cy="449" r="10" fill="#198754"/><text x="1204" y="453" font-size="12" fill="#ffffff" text-anchor="middle">2</text>
+  <!-- H9 -->
+  <rect x="894" y="474" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="495" font-size="13" font-weight="bold" fill="#212529">H9</text>
+  <text x="944" y="495" font-size="12.5" fill="#495057">Gestionar estado de citas</text>
+  <circle cx="1204" cy="491" r="10" fill="#198754"/><text x="1204" y="495" font-size="12" fill="#ffffff" text-anchor="middle">3</text>
+  <!-- H6 -->
+  <rect x="894" y="516" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="537" font-size="13" font-weight="bold" fill="#212529">H6</text>
+  <text x="944" y="537" font-size="12.5" fill="#495057">Radicar solicitudes con documentos adjuntos</text>
+  <circle cx="1204" cy="533" r="10" fill="#198754"/><text x="1204" y="537" font-size="12" fill="#ffffff" text-anchor="middle">5</text>
+  <!-- H4 -->
+  <rect x="894" y="558" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="579" font-size="13" font-weight="bold" fill="#212529">H4</text>
+  <text x="944" y="579" font-size="12.5" fill="#495057">Agendar citas a propiedades</text>
+  <circle cx="1204" cy="575" r="10" fill="#198754"/><text x="1204" y="579" font-size="12" fill="#ffffff" text-anchor="middle">5</text>
+  <!-- H8 -->
+  <rect x="894" y="600" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="621" font-size="13" font-weight="bold" fill="#212529">H8</text>
+  <text x="944" y="621" font-size="12.5" fill="#495057">Gestionar propiedades (crear, editar, dar de baja)</text>
+  <circle cx="1204" cy="617" r="10" fill="#198754"/><text x="1204" y="621" font-size="12" fill="#ffffff" text-anchor="middle">5</text>
+
+  <!-- SPRINT 3 -->
+  <rect x="40" y="656" width="1200" height="30" rx="4" fill="#212529"/>
+  <text x="56" y="671" font-size="16" font-weight="bold" fill="#ffffff">Sprint 3 &mdash; Administración y reportes &nbsp;&middot;&nbsp; 15 puntos &nbsp;&middot;&nbsp; 5 historias</text>
+  <rect x="210" y="688" width="330" height="18" fill="#e9ecef"/><text x="220" y="701" font-size="12" font-weight="bold" fill="#495057">PENDIENTE &middot; 0 pt</text>
+  <rect x="552" y="688" width="330" height="18" fill="#cfe2ff"/><text x="562" y="701" font-size="12" font-weight="bold" fill="#084298">EN PROGRESO &middot; 0 pt</text>
+  <rect x="894" y="688" width="330" height="18" fill="#d1e7dd"/><text x="904" y="701" font-size="12" font-weight="bold" fill="#0f5132">HECHO &middot; 15 pt</text>
+  <!-- H14 -->
+  <rect x="894" y="716" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="737" font-size="13" font-weight="bold" fill="#212529">H14</text>
+  <text x="944" y="737" font-size="12.5" fill="#495057">Ver auditoría del sistema</text>
+  <circle cx="1204" cy="733" r="10" fill="#198754"/><text x="1204" y="737" font-size="12" fill="#ffffff" text-anchor="middle">2</text>
+  <!-- H12 -->
+  <rect x="894" y="758" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="779" font-size="13" font-weight="bold" fill="#212529">H12</text>
+  <text x="944" y="779" font-size="12.5" fill="#495057">Gestionar catálogos (tipos, ciudades, características)</text>
+  <circle cx="1204" cy="775" r="10" fill="#198754"/><text x="1204" y="779" font-size="12" fill="#ffffff" text-anchor="middle">2</text>
+  <!-- H11 -->
+  <rect x="894" y="800" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="821" font-size="13" font-weight="bold" fill="#212529">H11</text>
+  <text x="944" y="821" font-size="12.5" fill="#495057">Administrar usuarios, roles e inmobiliarias</text>
+  <circle cx="1204" cy="817" r="10" fill="#198754"/><text x="1204" y="821" font-size="12" fill="#ffffff" text-anchor="middle">3</text>
+  <!-- H10 -->
+  <rect x="894" y="842" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="863" font-size="13" font-weight="bold" fill="#212529">H10</text>
+  <text x="944" y="863" font-size="12.5" fill="#495057">Revisar solicitudes y documentos</text>
+  <circle cx="1204" cy="859" r="10" fill="#198754"/><text x="1204" y="863" font-size="12" fill="#ffffff" text-anchor="middle">3</text>
+  <!-- H13 -->
+  <rect x="894" y="884" width="330" height="34" rx="6" fill="#ffffff" stroke="#adb5bd"/>
+  <text x="904" y="905" font-size="13" font-weight="bold" fill="#212529">H13</text>
+  <text x="944" y="905" font-size="12.5" fill="#495057">Reportes SQL (JOIN, N:M, LEFT JOIN, GROUP BY)</text>
+  <circle cx="1204" cy="901" r="10" fill="#198754"/><text x="1204" y="905" font-size="12" fill="#ffffff" text-anchor="middle">5</text>
+
+  <!-- Leyenda -->
+  <rect x="40" y="934" width="1200" height="20" rx="4" fill="#e2e3e5"/>
+  <text x="56" y="948" font-size="13" fill="#383d41">En cada tarjeta: historia (H#) seguida de su descripción y su punto de historia. Todos los sprints cerraron con el 100% de los puntos comprometidos entregados (ver Sprint Reviews y tabla de la sección 5).</text>
+</svg>
