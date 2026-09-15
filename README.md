@@ -82,6 +82,8 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 - `docs/SCRUM_DOCUMENTATION.md` — 3 sprints, historias, métricas y retrospectivas.
 - `docs/imagenes/tablero_scrum.png` — tablero Scrum de los 3 sprints.
 - `docs/imagenes/casos_de_uso.png` — diagrama de casos de uso (actores y UC de los 4 roles).
+- `docs/imagenes/diagramas_bd.pdf` — MER + modelo relacional + casos de uso en un solo
+  PDF, listo para entregar.
 - `database/consultas.sql` — las 5 consultas exigidas (INNER JOIN de 4 tablas,
   N:M, LEFT JOIN, GROUP BY/HAVING).
 
@@ -92,7 +94,8 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
   Sprint 3: citas, solicitudes, reportes, auditoría y seguridad) y su avance
   H1-H15 están en `docs/SCRUM_DOCUMENTATION.md` y en
   `docs/imagenes/tablero_scrum.png`.
-- Evidencia funcional de los flujos en `evidencias/` (capturas 01-17).
+- Evidencia funcional de los flujos en `evidencias/` (capturas 01-17) y evidencia
+  del repositorio, tablero y documentación en línea en `evidencias/` (18-20).
 
 ## Pruebas unitarias
 Ejecutan validaciones sobre el cifrado de contraseñas (incluido el vector de los
