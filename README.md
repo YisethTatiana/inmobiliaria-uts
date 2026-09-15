@@ -83,7 +83,8 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 - `docs/imagenes/tablero_scrum.png` — tablero Scrum de los 3 sprints.
 - `docs/imagenes/casos_de_uso.png` — diagrama de casos de uso (actores y UC de los 4 roles).
 - `docs/imagenes/diagramas_bd.pdf` — MER + modelo relacional + casos de uso en un solo
-  PDF, listo para entregar.
+  PDF, con los scripts SQL (`DDL`, `DML`, `consultas` y `script_limpiar_demo`)
+  pegados al final, listo para entregar.
 - `database/consultas.sql` — las 5 consultas exigidas (INNER JOIN de 4 tablas,
   N:M, LEFT JOIN, GROUP BY/HAVING).
 
