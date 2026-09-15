@@ -92,12 +92,15 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 ## Seguimiento Scrum (evidencia tablero)
 - Tablero público del proyecto (Kanban por sprints):
   **https://github.com/users/YisethTatiana/projects/1/views/1**
+- Tablero Padlet de seguimiento del proyecto:
+  **https://padlet.com/yiseth804/tablero-scrum-proyecto-inmobiliaria-uts-s023lf0zjr9io29zlmkk**
+  (evidencia gráfica en `evidencias/21_padlet.png`)
 - Los 3 sprints (Sprint 1: BD + catálogo público; Sprint 2: paneles y CRUD;
   Sprint 3: citas, solicitudes, reportes, auditoría y seguridad) y su avance
   H1-H15 están en `docs/SCRUM_DOCUMENTATION.md` y en
   `docs/imagenes/tablero_scrum.png`.
 - Evidencia funcional de los flujos en `evidencias/` (capturas 01-17) y evidencia
-  del repositorio, tablero y documentación en línea en `evidencias/` (18-20).
+  del repositorio, tablero y documentación en línea en `evidencias/` (18-21).
 
 ## Pruebas unitarias
 Ejecutan validaciones sobre el cifrado de contraseñas (incluido el vector de los

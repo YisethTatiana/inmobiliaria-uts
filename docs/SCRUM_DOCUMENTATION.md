@@ -128,6 +128,7 @@ El equipo planificó el máximo (21), comprometió un total de 49 puntos en 3 sp
 
 **Enlaces de seguimiento (en línea):**
 - Tablero de seguimiento: `https://github.com/users/YisethTatiana/projects/1/views/1` *(tablero en línea creado en GitHub Projects)*
+- Padlet de seguimiento del proyecto: `https://padlet.com/yiseth804/tablero-scrum-proyecto-inmobiliaria-uts-s023lf0zjr9io29zlmkk` *(evidencia gráfica en `evidencias/21_padlet.png`)*
 - Repositorio Git público: `https://github.com/YisethTatiana/inmobiliaria-uts` *(creado y subido)*
 
 ## 6. Entregables y aceptación
