@@ -83,8 +83,14 @@
                                                 <input type="hidden" name="idUsuario" value="<%= u.getIdUsuario() %>">
                                                 <div class="col-7">
                                                     <select name="idRol" class="form-select form-select-sm" onchange="mostrarInmobiliaria(this, 'inm-<%= u.getIdUsuario() %>')">
-                                                        <% for (Map.Entry<Integer, String> e : roles.entrySet()) { %>
-                                                            <option value="<%= e.getKey() %>" <%= u.getRoles().contains(e.getValue().toUpperCase()) ? "selected" : "" %>><%= e.getValue() %></option>
+                                                        <% for (Map.Entry<Integer, String> e : roles.entrySet()) {
+                                                            String nombreRol = e.getValue();
+                                                            boolean gestionable = "ADMINISTRADOR".equalsIgnoreCase(nombreRol)
+                                                                    || "INMOBILIARIA".equalsIgnoreCase(nombreRol)
+                                                                    || "CLIENTE".equalsIgnoreCase(nombreRol);
+                                                            if (!gestionable) continue;
+                                                            String etiquetaRol = "INMOBILIARIA".equalsIgnoreCase(nombreRol) ? "AGENTE" : nombreRol; %>
+                                                            <option value="<%= e.getKey() %>" <%= u.getRoles().contains(nombreRol.toUpperCase()) ? "selected" : "" %>><%= etiquetaRol %></option>
                                                         <% } %>
                                                     </select>
                                                 </div>
@@ -104,7 +110,7 @@
                                     <td data-label="Roles actuales">
                                         <% if (u.getRoles() != null && !u.getRoles().isEmpty()) {
                                             for (String rol : u.getRoles()) { %>
-                                                <span class="badge bg-secondary d-inline-block mb-1"><%= rol %></span>
+                                                <span class="badge bg-secondary d-inline-block mb-1"><%= "INMOBILIARIA".equalsIgnoreCase(rol) ? "AGENTE" : rol %></span>
                                                 <% Integer idRol = idRolPorNombre.get(rol);
                                                    if (!esCuentaPropia && idRol != null) { %>
                                                     <form action="<%= ctx %>/AdminUsuarioServlet" method="post" class="d-inline">

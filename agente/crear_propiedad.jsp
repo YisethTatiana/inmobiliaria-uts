@@ -32,7 +32,7 @@
 <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Publicar Propiedad</h2>
-        <a href="<%= ctx %>/AgentePropiedadServlet" class="btn btn-outline-secondary btn-sm">&larr; Mis propiedades</a>
+        <a href="<%= ctx %>/AgentePropiedadServlet" class="btn btn-outline-secondary btn-sm">&larr; Propiedades</a>
     </div>
 
     <% if (request.getParameter("sinInmobiliaria") != null) { %>

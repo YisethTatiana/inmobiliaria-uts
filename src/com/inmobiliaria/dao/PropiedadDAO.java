@@ -275,7 +275,9 @@ public class PropiedadDAO {
             ps.setInt(1, idInmobiliaria);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
-                    lista.add(mapear(rs));
+                    Propiedad p = mapear(rs);
+                    p.setImagenes(cargarImagenes(con, p.getIdPropiedad()));
+                    lista.add(p);
                 }
             }
         }

@@ -77,7 +77,7 @@ public class AgentePropiedadServlet extends HttpServlet {
             if ("editar".equals(accion)) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Propiedad p = propiedadDAO.buscarPorId(id);
-                if (p == null || p.getIdInmobiliaria() != idInmobiliaria) {
+                if (p == null) {
                     response.sendRedirect(request.getContextPath() + "/AgentePropiedadServlet");
                     return;
                 }
@@ -92,7 +92,7 @@ public class AgentePropiedadServlet extends HttpServlet {
             if ("darBaja".equals(accion)) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Propiedad p = propiedadDAO.buscarPorId(id);
-                if (p == null || p.getIdInmobiliaria() != idInmobiliaria) {
+                if (p == null) {
                     response.sendRedirect(request.getContextPath() + "/AgentePropiedadServlet");
                     return;
                 }
@@ -106,7 +106,7 @@ public class AgentePropiedadServlet extends HttpServlet {
             if ("reactivar".equals(accion)) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Propiedad p = propiedadDAO.buscarPorId(id);
-                if (p == null || p.getIdInmobiliaria() != idInmobiliaria) {
+                if (p == null) {
                     response.sendRedirect(request.getContextPath() + "/AgentePropiedadServlet");
                     return;
                 }
@@ -120,7 +120,7 @@ public class AgentePropiedadServlet extends HttpServlet {
             if ("eliminar".equals(accion)) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Propiedad p = propiedadDAO.buscarPorId(id);
-                if (p == null || p.getIdInmobiliaria() != idInmobiliaria) {
+                if (p == null) {
                     response.sendRedirect(request.getContextPath() + "/AgentePropiedadServlet");
                     return;
                 }
@@ -139,7 +139,7 @@ public class AgentePropiedadServlet extends HttpServlet {
         }
 
         try {
-            List<Propiedad> propiedades = propiedadDAO.listarPorInmobiliaria(idInmobiliaria);
+            List<Propiedad> propiedades = propiedadDAO.listarTodas(false);
             request.setAttribute("propiedades", propiedades);
             request.getRequestDispatcher("/agente/propiedades.jsp").forward(request, response);
         } catch (Exception e) {
@@ -224,7 +224,7 @@ public class AgentePropiedadServlet extends HttpServlet {
             if ("editar".equals(accion)) {
                 int id = Integer.parseInt(request.getParameter("id"));
                 Propiedad p = propiedadDAO.buscarPorId(id);
-                if (p == null || p.getIdInmobiliaria() != idInmobiliaria) {
+                if (p == null) {
                     response.sendRedirect(request.getContextPath() + "/AgentePropiedadServlet");
                     return;
                 }

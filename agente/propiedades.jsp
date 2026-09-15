@@ -3,7 +3,7 @@
 <%@ page import="com.inmobiliaria.modelo.Propiedad" %>
 <%@ page import="com.inmobiliaria.modelo.Usuario" %>
 <%
-    request.setAttribute("titulo", "Mis Propiedades");
+    request.setAttribute("titulo", "Propiedades");
     Usuario usuario = (Usuario) session.getAttribute("usuario");
     String ctx = request.getContextPath();
     if (usuario == null) {
@@ -21,7 +21,7 @@
 
 <div class="container my-4">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Mis Propiedades</h2>
+        <h2>Propiedades</h2>
         <div>
             <a href="<%= ctx %>/agente/dashboard_inmobiliaria.jsp" class="btn btn-outline-secondary btn-sm">&larr; Panel principal</a>
             <a href="<%= ctx %>/AgentePropiedadServlet" class="btn btn-outline-secondary btn-sm">Refrescar</a>
