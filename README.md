@@ -64,6 +64,11 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 > (`propiedad.operacion`) y el agente genera reportes de ventas y arriendos
 > desde su panel.
 
+> **Estado base de entrega:** la BD en ejecución queda solo con `admin`,
+> `agente1` (agente) y `cliente1`; los demás clientes se crean desde "Registrarse"
+> (rol CLIENTE). Para limpiar la base de usuarios demo se ejecuta
+> `database/script_limpiar_demo.sql` sobre `inmobiliaria_db` (verificado e2e).
+
 > Las contraseñas se almacenan cifradas (SHA-256 + salt). Ver detalle en `docs/MODELO_DATOS.md`.
 > El DML siembra 12 propiedades con imágenes reales de inmuebles, 10+ registros
 > en catálogos y **mínimo 10 registros por tabla principal** (incluye citas,
@@ -79,6 +84,15 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 - `docs/imagenes/casos_de_uso.png` — diagrama de casos de uso (actores y UC de los 4 roles).
 - `database/consultas.sql` — las 5 consultas exigidas (INNER JOIN de 4 tablas,
   N:M, LEFT JOIN, GROUP BY/HAVING).
+
+## Seguimiento Scrum (evidencia tablero)
+- Tablero público del proyecto (Kanban por sprints):
+  **https://github.com/users/YisethTatiana/projects/1/views/1**
+- Los 3 sprints (Sprint 1: BD + catálogo público; Sprint 2: paneles y CRUD;
+  Sprint 3: citas, solicitudes, reportes, auditoría y seguridad) y su avance
+  H1-H15 están en `docs/SCRUM_DOCUMENTATION.md` y en
+  `docs/imagenes/tablero_scrum.png`.
+- Evidencia funcional de los flujos en `evidencias/` (capturas 01-17).
 
 ## Pruebas unitarias
 Ejecutan validaciones sobre el cifrado de contraseñas (incluido el vector de los
