@@ -26,6 +26,8 @@
         <div class="alert alert-warning">Ya tienes una cita programada para esta propiedad en la misma fecha y hora.</div>
     <% } else if (request.getParameter("citaError") != null) { %>
         <div class="alert alert-danger">No se pudo agendar la cita. Verifica los datos.</div>
+    <% } else if (request.getParameter("fechaPasada") != null) { %>
+        <div class="alert alert-danger">La fecha y hora deben ser futuras; elige un horario disponible.</div>
     <% } else if (request.getParameter("favorito") != null) { %>
         <div class="alert alert-success">Favorito actualizado.</div>
     <% } %>

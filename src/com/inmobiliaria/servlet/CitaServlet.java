@@ -101,6 +101,18 @@ public class CitaServlet extends HttpServlet {
                 return;
             }
 
+            try {
+                java.time.LocalDateTime fecha =
+                        java.time.LocalDateTime.parse(fechaHora, java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+                if (fecha.isBefore(java.time.LocalDateTime.now())) {
+                    response.sendRedirect(request.getContextPath() + "/CitaServlet?fechaPasada=true");
+                    return;
+                }
+            } catch (java.time.format.DateTimeParseException e) {
+                response.sendRedirect(request.getContextPath() + "/CitaServlet?fechaInvalida=true");
+                return;
+            }
+
             boolean exito = citaDAO.agendarCita(usuario.getIdUsuario(), idPropiedad, fechaHora, observaciones);
             if (exito) {
                 auditoriaDAO.registrar(usuario.getIdUsuario(), "CREAR", "CITA", idPropiedad,

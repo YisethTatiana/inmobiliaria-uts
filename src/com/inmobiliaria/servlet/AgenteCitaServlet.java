@@ -104,6 +104,6 @@ public class AgenteCitaServlet extends HttpServlet {
 
     private boolean estadoValido(String estado) {
         return "PENDIENTE".equals(estado) || "APROBADA".equals(estado)
-                || "RECHAZADA".equals(estado) || "CANCELADA".equals(estado);
+                || "COMPLETADA".equals(estado) || "CANCELADA".equals(estado);
     }
 }

@@ -34,6 +34,8 @@
         <div class="alert alert-warning">Ya tienes una cita para esa propiedad en la misma fecha y hora.</div>
     <% } else if ("true".equals(request.getParameter("fechaInvalida"))) { %>
         <div class="alert alert-danger">La fecha y hora no son v&aacute;lidas.</div>
+    <% } else if ("true".equals(request.getParameter("fechaPasada"))) { %>
+        <div class="alert alert-danger">La fecha y hora deben ser futuras; elige un horario disponible.</div>
     <% } else if ("true".equals(request.getParameter("error"))) { %>
         <div class="alert alert-danger">No se pudo procesar la cita. Int&eacute;ntalo nuevamente.</div>
     <% } %>
