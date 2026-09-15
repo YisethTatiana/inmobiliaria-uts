@@ -114,9 +114,9 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 
 ## 5. Administración del proyecto (Gráfica Burn-down acumulada)
 
-**Tablero Scrum (imagen):** `imagenes/tablero_scrum.svg` — los 3 sprints (Cimientos, Negocio del cliente e inmobiliaria, Administración y reportes), cada uno con columnas Pendiente / En Progreso / Hecho, las historias H1–H15 y su estimación en puntos. Al cierre de cada sprint el 100% de los puntos comprometidos fue entregado.
+**Tablero Scrum (imagen):** `imagenes/tablero_scrum.png` — los 3 sprints (Cimientos, Negocio del cliente e inmobiliaria, Administración y reportes), cada uno con columnas Pendiente / En Progreso / Hecho, las historias H1–H15 y su estimación en puntos. Al cierre de cada sprint el 100% de los puntos comprometidos fue entregado.
 
-![Tablero Scrum](imagenes/tablero_scrum.svg)
+![Tablero Scrum](imagenes/tablero_scrum.png)
 
 | Sprint | Puntos planificados | Puntos comprometidos | Puntos entregados | Días |
 |---|---|---|---|---|
