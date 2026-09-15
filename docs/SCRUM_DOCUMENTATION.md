@@ -13,7 +13,7 @@ usuarios multi-rol (CLIENTE / INMOBILIARIA / ADMINISTRADOR), auditoría, catálo
 | Product Owner | Tatiana |
 | Scrum Master | Tatiana |
 | Equipo de Desarrollo | Tatiana |
-| Stack | Java 21, JSP/Servlets (Tomcat 9), MySQL, Bootstrap 5, JDBC |
+| Stack | Java 21, JSP/Servlets (Tomcat 8.5 — XAMPP), MySQL, Bootstrap 5, JDBC |
 
 ## 2. Marco de trabajo
 
