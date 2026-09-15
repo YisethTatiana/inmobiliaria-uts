@@ -6,4 +6,5 @@ uploads/
 WEB-INF/mails/
 test/out/
 *.war
+database.properties
 

@@ -30,7 +30,7 @@
     <% } else if (request.getParameter("docOk") != null) { %>
         <div class="alert alert-success">Documento cargado correctamente.</div>
     <% } else if (request.getParameter("docTipoError") != null) { %>
-        <div class="alert alert-danger">El documento debe ser PDF, imagen o Word (m&aacute;x. 5 MB).</div>
+        <div class="alert alert-danger">El documento debe ser PDF, JPG o PNG (m&#225;x. 5 MB).</div>
     <% } else if (request.getParameter("docError") != null) { %>
         <div class="alert alert-danger">Debes seleccionar el archivo que deseas adjuntar.</div>
     <% } else if (request.getParameter("error") != null) { %>
@@ -109,7 +109,7 @@
                                                                 </select>
                                                             </div>
                                                             <div class="mb-3">
-                                                                <label class="form-label">Archivo (PDF, JPG, PNG, DOC/DOCX &mdash; m&aacute;x. 5 MB)</label>
+                                                                <label class="form-label">Archivo (PDF, JPG o PNG &mdash; m&aacute;x. 5 MB)</label>
                                                                 <input type="file" name="archivo" class="form-control" required>
                                                             </div>
                                                         </div>

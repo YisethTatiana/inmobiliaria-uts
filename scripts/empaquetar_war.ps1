@@ -10,6 +10,10 @@
 #   - WEB-INF\classes\smtp.properties NO se incluye (contiene
 #     credenciales reales de Mailjet). Si el destino la necesita,
 #     cree un smtp.properties nuevo en la instancia desplegada.
+#   - WEB-INF\classes\database.properties NO se incluye (respaldo
+#     local de credenciales BD). En despliegue use variables de
+#     entorno DB_HOST/DB_NAME/DB_USER/DB_PASSWORD o un
+#     database.properties nuevo en la instancia.
 #   - uploads\, src\, test\ y *.class durante empaquetado no se copian.
 # ============================================================
 param([string]$Salida = "$PSScriptRoot\Inmobiliaria.war", [switch]$ConSmtp)
@@ -38,6 +42,7 @@ Get-ChildItem -Force | Where-Object { $_.Name -notin @('src', 'test', '.git') } 
     Copy-Item $_.FullName -Destination $tmp -Recurse -Force
 }
 if (Test-Path "$tmp\WEB-INF\classes\smtp.properties") { Remove-Item "$tmp\WEB-INF\classes\smtp.properties" }
+if (Test-Path "$tmp\WEB-INF\classes\database.properties") { Remove-Item "$tmp\WEB-INF\classes\database.properties" }
 Get-ChildItem "$tmp\uploads" -ErrorAction SilentlyContinue | Remove-Item -Recurse -Force
 
 Write-Host "==> 3/3 Generando $Salida ..."

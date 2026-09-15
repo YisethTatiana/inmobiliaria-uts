@@ -75,8 +75,21 @@ public class AgenteCitaServlet extends HttpServlet {
             int idCita = Integer.parseInt(request.getParameter("idCita"));
             String estado = request.getParameter("estado");
 
+            if (!estadoValido(estado)) {
+                response.sendRedirect(request.getContextPath() + "/AgenteCitaServlet?actualizado=false");
+                return;
+            }
+
+            Usuario usuario = (Usuario) request.getSession(false).getAttribute("usuario");
+            if (usuario != null && usuario.tieneRol("INMOBILIARIA")) {
+                int idInmobiliaria = usuarioDAO.obtenerInmobiliaria(usuario.getIdUsuario());
+                if (!citaDAO.perteneceAInmobiliaria(idCita, idInmobiliaria)) {
+                    response.sendRedirect(request.getContextPath() + "/acceso_denegado.jsp");
+                    return;
+                }
+            }
+
             if (citaDAO.actualizarEstado(idCita, estado)) {
-                Usuario usuario = (Usuario) request.getSession(false).getAttribute("usuario");
                 auditoriaDAO.registrar(usuario.getIdUsuario(), "ESTADO", "CITA", idCita,
                         "Cambió la cita #" + idCita + " a " + estado, request.getRemoteAddr());
                 response.sendRedirect(request.getContextPath() + "/AgenteCitaServlet?actualizado=true");
@@ -87,5 +100,10 @@ public class AgenteCitaServlet extends HttpServlet {
             e.printStackTrace();
             response.sendRedirect(request.getContextPath() + "/AgenteCitaServlet?actualizado=false");
         }
+    }
+
+    private boolean estadoValido(String estado) {
+        return "PENDIENTE".equals(estado) || "APROBADA".equals(estado)
+                || "RECHAZADA".equals(estado) || "CANCELADA".equals(estado);
     }
 }

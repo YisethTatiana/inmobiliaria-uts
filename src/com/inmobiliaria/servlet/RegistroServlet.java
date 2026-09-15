@@ -76,6 +76,11 @@ public class RegistroServlet extends HttpServlet {
                 request.setAttribute("error", "Error al procesar el registro.");
             }
             reenviar(request, response);
+        } catch (Exception e) {
+            e.printStackTrace();
+            request.setAttribute("error",
+                    "El correo ya se encuentra registrado o ocurrió un error al procesar el alta.");
+            reenviar(request, response);
         }
     }
 

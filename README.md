@@ -29,7 +29,10 @@ docs/                             MODELO_DATOS.md, SCRUM_DOCUMENTATION.md
 ## Instalación
 1. Levantar MySQL (XAMPP) y ejecutar `database/script_ddl.sql`, luego
    `database/script_dml.sql` (crea `inmobiliaria_db`, tablas y datos de prueba).
-   Ajustar credenciales en `src/com/inmobiliaria/config/ConexionBD.java` si difieren.
+   Las credenciales se leen de las variables de entorno del sistema
+   `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`; como respaldo local usa
+   `WEB-INF/classes/database.properties` (no versionado). Para XAMPP basta
+   dejar `database.properties` con `root`/vacío.
 2. Copiar el proyecto a `C:\xampp\tomcat\webapps\Inmobiliaria` (ya está
    implementado como webapp desplegable).
 3. `WEB-INF/lib/` debe contener el driver MySQL (`mysql-connector-j-8.0.33.jar`).
@@ -92,15 +95,10 @@ Salida esperada: `[OK] PasswordUtilsTest ...`, `[OK] UsuarioTest ...` y
 ## Despliegue en línea (puntos extra — opcional)
 
 El enunciado otorga puntos extra por una instancia en línea de la base de datos y
-de la aplicación. La cadena de conexión está centralizada en
-`src/com/inmobiliaria/config/ConexionBD.java`, así que basta cambiar el URL,
-usuario y clave **solo allí**:
-
-```java
-DB_URL  = "jdbc:mysql://HOST_PUBLICO:3306/BD_NOMBRE?useSSL=false&serverTimezone=UTC";
-DB_USER = "USUARIO";
-DB_PASS = "CLAVE";
-```
+de la aplicación. Las credenciales no están quemadas en el código: `ConexionBD.java`
+las lee exclusivamente de las variables de entorno del sistema
+`DB_HOST`, `DB_NAME`, `DB_USER` y `DB_PASSWORD` (con `WEB-INF/classes/database.properties`
+solo como respaldo local si alguna variable falta):
 
 Opciones gratuitas frecuentes para la BD MySQL en línea: **Railway**, **Aiven** o
 **Clever Cloud**. Para la aplicación servlet (war de Tomcat): **Railway**,
@@ -110,7 +108,9 @@ Pasos generales:
 1. Crear la instancia MySQL en línea y cargar `database/script_ddl.sql` +
    `database/script_dml.sql` con un cliente (por ejemplo, MySQL Workbench).
 2. Empaquetar la aplicación: `jar -cf Inmobiliaria.war -C . .` (debe excluirse
-   `smtp.properties` con las credenciales reales).
-3. Cambiar solo la cadena de conexión en `ConexionBD.java`, recompilar y
-   publicar el `war` en el hosting.
+   `smtp.properties` y `database.properties`; ambos con credenciales locales).
+3. En el hosting, definir las variables de entorno `DB_HOST`, `DB_NAME`,
+   `DB_USER`, `DB_PASSWORD` (o crear un `database.properties` en
+   `WEB-INF/classes/`) y publicar el `war`. No se versionan ni empaquetan
+   `smtp.properties` ni `database.properties`.
 4. Probar login + un envío real de correo de recuperación.

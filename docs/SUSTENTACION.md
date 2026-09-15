@@ -43,5 +43,5 @@ Por diseño se dejaron fuera acciones de alto privilegio como eliminar físicame
 
 ## 8. Preguntas frecuentes que pueden surgir
 - **¿Por qué el agente no digita la matrícula?** Se autogenera (`MAT-` + marca de tiempo) para garantizar la unicidad de la restricción UNIQUE.
-- **¿Dónde está centralizada la conexión?** En `ConexionBD.java`; para publicar en línea solo se cambia URL/usuario/clave en ese archivo.
+- **¿Dónde está centralizada la conexión?** En `ConexionBD.java`, que lee las credenciales exclusivamente de las variables de entorno del sistema `DB_HOST`, `DB_NAME`, `DB_USER`, `DB_PASSWORD`; si alguna falta, cae al respaldo local `WEB-INF/classes/database.properties` (archivo no versionado). No hay credenciales quemadas en el código.
 - **¿Cómo se probó el correo?** Pruebas unitarias (2/2 OK) + envíos reales SMTP con verificación de entrega en Mailjet.

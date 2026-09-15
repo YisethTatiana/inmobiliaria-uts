@@ -104,11 +104,27 @@ public class SolicitudServlet extends HttpServlet {
                     return;
                 }
 
+                final long maxTamano = 5L * 1024 * 1024;
+                if (archivo.getSize() > maxTamano) {
+                    response.sendRedirect(request.getContextPath() + "/SolicitudServlet?docTipoError=true");
+                    return;
+                }
+
                 String nombreOriginal = Paths.get(archivo.getSubmittedFileName()).getFileName().toString();
                 String extension = nombreOriginal.contains(".")
                         ? nombreOriginal.substring(nombreOriginal.lastIndexOf('.')).toLowerCase()
                         : "";
-                if (!extension.matches("\\.(pdf|jpg|jpeg|png|docx?)$")) {
+                if (!extension.matches("\\.(pdf|jpe?g|png)$")) {
+                    response.sendRedirect(request.getContextPath() + "/SolicitudServlet?docTipoError=true");
+                    return;
+                }
+
+                String mime = archivo.getContentType();
+                boolean mimeValido = mime != null
+                        && ((extension.equals(".pdf") && mime.toLowerCase().contains("pdf"))
+                        || (extension.matches("\\.jpe?g") && mime.toLowerCase().contains("jpeg"))
+                        || (extension.equals(".png") && mime.toLowerCase().contains("png")));
+                if (!mimeValido) {
                     response.sendRedirect(request.getContextPath() + "/SolicitudServlet?docTipoError=true");
                     return;
                 }

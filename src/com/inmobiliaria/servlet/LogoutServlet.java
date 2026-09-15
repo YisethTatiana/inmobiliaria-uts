@@ -22,8 +22,12 @@ public class LogoutServlet extends HttpServlet {
         if (session != null) {
             Usuario usuario = (Usuario) session.getAttribute("usuario");
             if (usuario != null) {
-                auditoriaDAO.registrar(usuario.getIdUsuario(), "LOGOUT", "USUARIO",
-                        usuario.getIdUsuario(), "Cierre de sesión", request.getRemoteAddr());
+                try {
+                    auditoriaDAO.registrar(usuario.getIdUsuario(), "LOGOUT", "USUARIO",
+                            usuario.getIdUsuario(), "Cierre de sesión", request.getRemoteAddr());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
             session.invalidate();
         }

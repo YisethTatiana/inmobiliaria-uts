@@ -1,0 +1,16 @@
+# Plantilla de respaldo local de conexion a la base de datos.
+#
+# La aplicacion lee las credenciales PRIMERO de las variables de entorno
+# del sistema:  DB_HOST, DB_NAME, DB_USER, DB_PASSWORD
+# Si una variable de entorno falta, se toma el valor de este archivo.
+#
+# Para usarlo en la instancia de despliegue:
+#   1) Copie este archivo como  WEB-INF/classes/database.properties
+#   2) Deje database.properties FUERA del control de versiones y del
+#      empaquetado del war (no debe contener claves en texto plano en git).
+#
+# Valores locales de desarrollo (XAMPP):
+db.host=localhost
+db.name=inmobiliaria_db
+db.user=root
+db.password=
