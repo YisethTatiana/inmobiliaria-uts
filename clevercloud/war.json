@@ -1,0 +1,12 @@
+{
+  "deploy": {
+    "container": "TOMCAT9",
+    "war": [
+      {
+        "file": "scripts/Inmobiliaria.war",
+        "context": "/",
+        "checkMe": "/login.jsp"
+      }
+    ]
+  }
+}
